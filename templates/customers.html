@@ -3,27 +3,29 @@
 {% block title %}Customers{% endblock %}
 
 {% block content %}
-  <a href="/~richealp7/grad-db-final/customers/add/">
+  <a href="{{ root }}/customers/add/">
     <button type="button" class="btn btn-success">Add Customer</button>
   </a>
-  <table class="table table-hover button-above">
-    <thead>
-      <tr>
-        <td>#</td>
-        <td>First</td>
-        <td>Last</td>
-      </tr>
-    </thead>
-    <tbody>
-      {% for customer in customers %}
-        <tr class='clickable-row' data-href='/~richealp7/grad-db-final/customer/?id={{ customer.customer_id }}'>
-          <td>{{ customer.customer_id }}</td>
-          <td>{{ customer.first_name }} </td>
-          <td>{{ customer.last_name }}</td>
+  {% if customers %}
+    <table class="table table-hover button-above">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>First</td>
+          <td>Last</td>
         </tr>
-      {% else %}
-        <tr>No customers found</tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% for customer in customers %}
+          <tr class='clickable-row' data-href='{{ root }}/customer/?id={{ customer.customer_id }}'>
+            <td>{{ customer.customer_id }}</td>
+            <td>{{ customer.first_name }} </td>
+            <td>{{ customer.last_name }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="margin-top">No customers found</p>
+  {% endif %}
 {% endblock %}
