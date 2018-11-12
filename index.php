@@ -7,4 +7,5 @@ $twig = new Twig_Environment($loader);
 
 echo $twig->render('index.html', array('name' => 'Fabien'));
 
+
 ?>
