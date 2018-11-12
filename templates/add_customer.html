@@ -3,15 +3,15 @@
 {% block title %}Add Customer{% endblock %}
 
 {% block content %}
-  <form action="">
+  <form action="{{ root }}/scripts/add_customer.php" method="post">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="first_name">First name</label>
-        <input type="test" class="form-control" id="first_name" placeholder="First name">
+        <input type="test" class="form-control" id="first_name" name="first_name" placeholder="First name">
       </div>
       <div class="form-group col-md-6">
         <label for="last_name">Last name</label>
-        <input type="test" class="form-control" id="last_name" placeholder="Last name">
+        <input type="test" class="form-control" id="last_name" name="last_name" placeholder="Last name">
       </div>
     </div>
     <button type="submit" class="btn btn-success">Add Customer</button>
