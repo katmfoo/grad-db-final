@@ -43,7 +43,11 @@
 
     <div class="base-container">
 
-      {{ flash }}
+      {% if flash %}
+        <div class="alert alert-success" role="alert">
+          {{ flash }}
+        </div>
+      {% endif %}
 
       <h3 class="title">{% block title %}{% endblock %}</h3>
 
