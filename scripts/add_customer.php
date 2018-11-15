@@ -23,8 +23,9 @@ if (mysqli_query($conn, $sql)) {
 $sql = "INSERT INTO customer (first_name, last_name, address_id) VALUES ('".$first_name."', '".$last_name."', '".$address_id."')";
 
 if (mysqli_query($conn, $sql)) {
+    $customer_id = mysqli_insert_id($conn);
     $_SESSION['flash'] = "Customer created successfully";
-    header('Location: '.$_ROOT.'/customers/');
+    header('Location: '.$_ROOT.'/customer/?id='.$customer_id.'&source=Local');
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     return;
