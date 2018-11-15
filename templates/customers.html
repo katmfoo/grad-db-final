@@ -23,7 +23,7 @@
   </div>
 
   {% if customers %}
-    <table class="table table-hover button-above">
+    <table class="table table-hover table-sm button-above">
       <thead>
         <tr>
           <th>Name</th>
@@ -52,14 +52,14 @@
     jQuery(document).ready(function($) {
       $('#previousButton').click(function() {
         if ('{{ search }}' != '') {
-        location.href = "{{ root }}/customers/?search={{ search }}&page={{ page - 1}}";
+          location.href = "{{ root }}/customers/?search={{ search }}&page={{ page - 1}}";
         } else {
           location.href = "{{ root }}/customers/?page={{ page - 1}}";
         }
       });
       $('#nextButton').click(function() {
         if ('{{ search }}' != '') {
-        location.href = "{{ root }}/customers/?search={{ search }}&page={{ page + 1}}";
+          location.href = "{{ root }}/customers/?search={{ search }}&page={{ page + 1}}";
         } else {
           location.href = "{{ root }}/customers/?page={{ page + 1}}";
         }
