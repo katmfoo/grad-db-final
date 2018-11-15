@@ -3,7 +3,21 @@
 require_once '../global.php';
 require_once '../db.php';
 
-$sql = "SELECT * FROM customer";
+if (isset($_GET['page'])) {
+    $page = htmlspecialchars($_GET['page']);
+} else {
+    $page = 1;
+}
+
+$offset = $_ITEMS_PER_PAGE * ($page - 1);
+
+if (isset($_GET['search'])) {
+    $search = htmlspecialchars($_GET['search']);
+}
+
+$sql = "SELECT * FROM customer_view ";
+if (isset($search) && $search) { $sql = $sql."WHERE CONCAT(first_name, ' ', last_name) LIKE '%".$search."%'"; }
+$sql = $sql."ORDER BY first_name ASC, last_name ASC LIMIT ".$_ITEMS_PER_PAGE." OFFSET ".$offset;
 $result = mysqli_query($conn, $sql);
 $customers = array();
 
@@ -13,6 +27,9 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 
-echo $twig->render('customers.html', array('customers' => $customers));
+$vars = array('customers' => $customers, 'page' => $page);
+if (isset($search) && $search) { $vars['search'] = $search; }
+
+echo $twig->render('customers.html', $vars);
 
 ?>
