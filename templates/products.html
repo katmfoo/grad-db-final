@@ -35,12 +35,12 @@
           <a href="http://google.com">link</a>
           <div class="card-header">{{ product.name }}</div>
           <div class="card-body">
-            <div style="margin-top: -7px;">
-              {% if product.source != 'Local' %}<small class="text-muted">Sold by {{ product.source }}</small>{% endif %}
-              {% if product.product_code %}<small style="float: right;" class="text-muted">{{ product.product_code }}</small>{% endif %}
+            <div style="margin-top: -7px;" class="clearfix">
+              <small class="text-muted">Sold by {{ product.seller }}</small>
+              {% if product.product_code %}<small style="float: right; margin-top: 4px;" class="text-muted">{{ product.product_code }}</small>{% endif %}
             </div>
             <div>
-              {% if product.source == 'Sakila' %}Rental rate{% else %}List price{% endif %}: ${{ product.cost|number_format(2) }}
+              {% if product.seller_id == 4 %}Rental rate{% else %}List price{% endif %}: ${{ product.cost|number_format(2) }}
               {% if product.quantity_available > 0 %}
                 <small class="text-success">({{ product.quantity_available }} left)</small>
               {% else %}
