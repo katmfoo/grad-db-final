@@ -39,14 +39,14 @@
         {% endfor %}
       </tbody>
     </table>
-    <div class="pagination-buttons">
-      <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>
-      <span>Page {{ page }}</span>
-      <button type="button" id="nextButton" class="btn btn-light btn-sm">Next</button>
-    </div>
   {% else %}
     <p class="margin-top">No customers found</p>
   {% endif %}
+  <div class="pagination-buttons">
+    <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>
+    <span>Page {{ page }}</span>
+    <button type="button" id="nextButton" class="btn btn-light btn-sm" {% if customers|length < page_size %}disabled{% endif %}>Next</button>
+  </div>
 
   <script>
     jQuery(document).ready(function($) {

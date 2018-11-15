@@ -27,7 +27,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 
-$vars = array('customers' => $customers, 'page' => $page);
+$vars = array('customers' => $customers, 'page' => $page, 'page_size' => $_ITEMS_PER_PAGE);
 if (isset($search) && $search) { $vars['search'] = $search; }
 
 echo $twig->render('customers.html', $vars);
