@@ -27,14 +27,14 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Source</th>
+          <th>Origin</th>
         </tr>
       </thead>
       <tbody>
         {% for customer in customers %}
-          <tr class='clickable-row' data-href='{{ root }}/customer/?id={{ customer.customer_id }}&source={{ customer.source }}'>
+          <tr class='clickable-row' data-href='{{ root }}/customer/?id={{ customer.customer_id }}&seller_id={{ customer.seller_id }}'>
             <td>{{ customer.first_name }} {{ customer.last_name }}</td>
-            <td>{{ customer.source }}</td>
+            <td>{{ customer.seller }}</td>
           </tr>
         {% endfor %}
       </tbody>

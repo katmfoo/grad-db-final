@@ -3,7 +3,7 @@
 {% block title %}Customer &middot; {{ customer.first_name }} {{ customer.last_name }}{% endblock %}
 
 {% block content %}
-  {% if customer.source == 'Local' %}
+  {% if customer.seller_id == 1 %}
     <div>
       <button type="button" class="btn btn-primary mb-2" id="editCustomer">Edit Customer</button>
       <button type="button" class="btn btn-danger mb-2" id="deleteCustomer">Delete Customer</button>
@@ -15,8 +15,8 @@
   <h5>Personal details</h5>
   <table class="table table-sm table-bordered">
     <tr>
-      <td>Source</td>
-      <td>{{ customer.source }}</td>
+      <td>Origin</td>
+      <td>{{ customer.seller }}</td>
     </tr>
     <tr>
       <td>Address</td>
