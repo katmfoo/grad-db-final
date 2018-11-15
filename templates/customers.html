@@ -3,29 +3,68 @@
 {% block title %}Customers{% endblock %}
 
 {% block content %}
-  <a href="{{ root }}/customers/add/">
-    <button type="button" class="btn btn-success">Add Customer</button>
-  </a>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <a href="{{ root }}/customers/add/">
+          <button type="button" class="btn btn-success mb-2">Add Customer</button>
+        </a>
+      </div>
+      <div class="col">
+        <form action="{{ root }}/customers/" method="get">
+          <div class="input-group mb-3">
+            <input type="text" name="search" class="form-control" placeholder="Name" {% if search %}value="{{ search }}"{% endif %}>
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   {% if customers %}
     <table class="table table-hover button-above">
       <thead>
         <tr>
-          <td>#</td>
-          <td>First</td>
-          <td>Last</td>
+          <th>Name</th>
+          <th>Source</th>
         </tr>
       </thead>
       <tbody>
         {% for customer in customers %}
-          <tr class='clickable-row' data-href='{{ root }}/customer/?id={{ customer.customer_id }}'>
-            <td>{{ customer.customer_id }}</td>
-            <td>{{ customer.first_name }} </td>
-            <td>{{ customer.last_name }}</td>
+          <tr class='clickable-row' data-href='{{ root }}/customer/?id={{ customer.customer_id }}&source={{ customer.source }}'>
+            <td>{{ customer.first_name }} {{ customer.last_name }}</td>
+            <td>{{ customer.source }}</td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
+    <div class="pagination-buttons">
+      <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>
+      <span>Page {{ page }}</span>
+      <button type="button" id="nextButton" class="btn btn-light btn-sm">Next</button>
+    </div>
   {% else %}
     <p class="margin-top">No customers found</p>
   {% endif %}
+
+  <script type="text/javascript">
+    document.getElementById("previousButton").onclick = function () {
+      if ('{{ search }}' != '') {
+        location.href = "{{ root }}/customers/?search={{ search }}&page={{ page - 1}}";
+      } else {
+        location.href = "{{ root }}/customers/?page={{ page - 1}}";
+      }
+    };
+    document.getElementById("nextButton").onclick = function () {
+      if ('{{ search }}' != '') {
+        location.href = "{{ root }}/customers/?search={{ search }}&page={{ page + 1}}";
+      } else {
+        location.href = "{{ root }}/customers/?page={{ page + 1}}";
+      }
+    };
+  </script>
+
 {% endblock %}
