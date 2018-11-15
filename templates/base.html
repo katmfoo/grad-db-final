@@ -16,7 +16,7 @@
         margin: 30px auto;
       }
 
-      h3.title {
+      h4.title {
         margin-top: -7px;
         margin-bottom: 12px;
         margin-left: 16px;
@@ -63,7 +63,7 @@
         </div>
       {% endif %}
 
-      <h3 class="title">{% block title %}{% endblock %}</h3>
+      <h4 class="title">{% block title %}{% endblock %}</h4>
 
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
             <a class="nav-item nav-link" href="{{ root }}/">Home</a>
             <a class="nav-item nav-link" href="#">Products</a>
             <a class="nav-item nav-link" href="{{ root }}/customers/">Customers</a>
-            <a class="nav-item nav-link" href="#">Suppliers</a>
+            <a class="nav-item nav-link" href="{{ root }}/suppliers/">Suppliers</a>
             <a class="nav-item nav-link" href="#">Inventory</a>
           </div>
         </div>
