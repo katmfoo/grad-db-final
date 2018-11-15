@@ -1,19 +1,28 @@
 {% extends "base.html" %}
 
-{% block title %}{{ customer.first_name }} {{ customer.last_name }}{% endblock %}
+{% block title %}Customer &middot; {{ customer.first_name }} {{ customer.last_name }}{% endblock %}
 
 {% block content %}
   {% if customer.source == 'Local' %}
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <button type="button" class="btn btn-primary mb-2" id="editCustomer">Edit Customer</button>
-          <button type="button" class="btn btn-danger mb-2" id="deleteCustomer">Delete Customer</button>
-        </div>
-      </div>
+    <div>
+      <button type="button" class="btn btn-primary mb-2" id="editCustomer">Edit Customer</button>
+      <button type="button" class="btn btn-danger mb-2" id="deleteCustomer">Delete Customer</button>
     </div>
   {% endif %}
-  <p>Address: {{ customer.address }}, {{ customer.city }} {{ customer.state }}, {{ customer.zip }} {{ customer.country }}</p>
+
+  <br>
+
+  <h5>Personal details</h5>
+  <table class="table table-sm table-bordered">
+    <tr>
+      <td>Source</td>
+      <td>{{ customer.source }}</td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>{{ customer.address }}, {{ customer.city }} {{ customer.state }}, {{ customer.zip }} {{ customer.country }}</td>
+    </tr>
+  </table>
 
   <script>
     jQuery(document).ready(function($) {
