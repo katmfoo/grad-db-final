@@ -3,5 +3,5 @@
 {% block title %}{{ customer.first_name }} {{ customer.last_name }}{% endblock %}
 
 {% block content %}
-
+  <p>Address: {{ customer.address }}, {{ customer.city }} {{ customer.state }}, {{ customer.zip }} {{ customer.country }}</p>
 {% endblock %}
