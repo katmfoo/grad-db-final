@@ -3,7 +3,7 @@
 require_once 'vendor/autoload.php';
 
 $_ROOT = '/grad-db-final';
-$_ITEMS_PER_PAGE = 10;
+$_ITEMS_PER_PAGE = 12;
 
 if (!session_id()) session_start();
 
