@@ -45,6 +45,30 @@
       .pagination-buttons span {
         margin: 0 10px;
       }
+
+      .card-header {
+        padding: .5rem .75rem;
+      }
+
+      .card-body {
+        padding: .75rem;
+      }
+
+      .card.clickable {
+        cursor: pointer;
+      }
+
+      .card.clickable:hover {
+        border-color: rgba(0, 0, 0, 0.29);
+      }
+
+      .card.clickable a {
+        display: none;
+      }
+
+      .card.clickable:hover .card-header {
+        border-color: rgba(0, 0, 0, 0.29);
+      }
     </style>
 
     <!-- Optional JavaScript -->
@@ -72,7 +96,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="{{ root }}/">Home</a>
-            <a class="nav-item nav-link" href="#">Products</a>
+            <a class="nav-item nav-link" href="{{ root }}/products/">Products</a>
             <a class="nav-item nav-link" href="{{ root }}/customers/">Customers</a>
             <a class="nav-item nav-link" href="{{ root }}/suppliers/">Suppliers</a>
             <a class="nav-item nav-link" href="#">Inventory</a>

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+
+  <style>
+    .card-columns {
+      column-count: 2;
+    }
+  </style>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-success mb-2" id="addProduct">Add Product</button>
+      </div>
+      <div class="col">
+        <form action="{{ root }}/products/" method="get">
+          <div class="input-group mb-3">
+            <input type="text" name="search" class="form-control" placeholder="Product name" {% if search %}value="{{ search }}"{% endif %}>
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% if products %}
+    <div class="card-columns">
+      {% for product in products %}
+        <div class="card clickable">
+          <a href="http://google.com">link</a>
+          <div class="card-header">{{ product.name }}</div>
+          <div class="card-body">
+            <div style="margin-top: -7px;">
+              {% if product.source != 'Local' %}<small class="text-muted">Sold by {{ product.source }}</small>{% endif %}
+              {% if product.product_code %}<small style="float: right;" class="text-muted">{{ product.product_code }}</small>{% endif %}
+            </div>
+            <div>
+              {% if product.source == 'Sakila' %}Rental rate{% else %}List price{% endif %}: ${{ product.cost|number_format(2) }}
+              {% if product.quantity_available > 0 %}
+                <small class="text-success">({{ product.quantity_available }} left)</small>
+              {% else %}
+                <small class="text-danger">(Out of stock)</small>
+              {% endif %}
+            </div>
+            <span class="badge badge-primary">Primary</span>
+            <span class="badge badge-secondary">Secondary</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="margin-top">No products found</p>
+  {% endif %}
+  <div class="pagination-buttons">
+    <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>
+    <span>Page {{ page }}</span>
+    <button type="button" id="nextButton" class="btn btn-light btn-sm" {% if products|length < page_size %}disabled{% endif %}>Next</button>
+  </div>
+
+  <script>
+    jQuery(document).ready(function($) {
+      $('#previousButton').click(function() {
+        if ('{{ search }}' != '') {
+          location.href = "{{ root }}/products/?search={{ search }}&page={{ page - 1}}";
+        } else {
+          location.href = "{{ root }}/products/?page={{ page - 1}}";
+        }
+      });
+      $('#nextButton').click(function() {
+        if ('{{ search }}' != '') {
+          location.href = "{{ root }}/products/?search={{ search }}&page={{ page + 1}}";
+        } else {
+          location.href = "{{ root }}/products/?page={{ page + 1}}";
+        }
+      });
+      $('#addProduct').click(function() {
+        location.href = "{{ root }}/products/add/";
+      });
+      $(".card").click(function() {
+        location.href = $(this).find("a").attr("href");
+      });
+    });
+  </script>
+
+{% endblock %}
