@@ -23,7 +23,7 @@ $sql = "UPDATE customer SET first_name = '".$first_name."', last_name = '".$last
 
 if (mysqli_query($conn, $sql)) {
     $_SESSION['flash'] = "Customer edited successfully";
-    header('Location: '.$_ROOT.'/customer/?id='.$customer_id.'&source=Local');
+    header('Location: '.$_ROOT.'/customers/?id='.$customer_id.'&seller_id=1');
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     return;

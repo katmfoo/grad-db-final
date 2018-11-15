@@ -32,7 +32,7 @@
       </thead>
       <tbody>
         {% for customer in customers %}
-          <tr class='clickable-row' data-href='{{ root }}/customer/?id={{ customer.customer_id }}&seller_id={{ customer.seller_id }}'>
+          <tr class='clickable-row' data-href='{{ root }}/customers/?id={{ customer.customer_id }}&seller_id={{ customer.seller_id }}'>
             <td>{{ customer.first_name }} {{ customer.last_name }}</td>
             <td>{{ customer.seller }}</td>
           </tr>
