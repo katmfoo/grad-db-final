@@ -50,21 +50,23 @@
     <p class="margin-top">No customers found</p>
   {% endif %}
 
-  <script type="text/javascript">
-    document.getElementById("previousButton").onclick = function () {
-      if ('{{ search }}' != '') {
+  <script>
+    jQuery(document).ready(function($) {
+      $('#previousButton').click(function() {
+        if ('{{ search }}' != '') {
         location.href = "{{ root }}/customers/?search={{ search }}&page={{ page - 1}}";
-      } else {
-        location.href = "{{ root }}/customers/?page={{ page - 1}}";
-      }
-    };
-    document.getElementById("nextButton").onclick = function () {
-      if ('{{ search }}' != '') {
+        } else {
+          location.href = "{{ root }}/customers/?page={{ page - 1}}";
+        }
+      });
+      $('#nextButton').click(function() {
+        if ('{{ search }}' != '') {
         location.href = "{{ root }}/customers/?search={{ search }}&page={{ page + 1}}";
-      } else {
-        location.href = "{{ root }}/customers/?page={{ page + 1}}";
-      }
-    };
+        } else {
+          location.href = "{{ root }}/customers/?page={{ page + 1}}";
+        }
+      });
+    });
   </script>
 
 {% endblock %}
