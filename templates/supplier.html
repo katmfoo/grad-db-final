@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Supplier &middot; {{ supplier.supplier_name }}{% endblock %}
+
+{% block content %}
+  <div>
+    <button type="button" class="btn btn-primary mb-2" id="editSupplier">Edit Supplier</button>
+    <button type="button" class="btn btn-danger mb-2" id="deleteSupplier">Delete Supplier</button>
+  </div>
+
+  <br>
+
+  <h5>Primary contact</h5>
+  <table class="table table-sm table-bordered">
+    <tr>
+      <td>Name</td>
+      <td>{{ supplier.first_name }} {{ supplier.last_name }}</td>
+    </tr>
+    <tr>
+      <td>Job title</td>
+      <td>{{ supplier.job_title }}</td>
+    </tr>
+    <tr>
+      <td>Phone number</td>
+      <td>{{ supplier.phone_number }}</td>
+    </tr>
+  </table>
+
+  <h5>Location</h5>
+  <table class="table table-sm table-bordered">
+    <tr>
+      <td>Address</td>
+      <td>{{ supplier.address }}, {{ supplier.city }} {{ supplier.state }}, {{ supplier.zip }} {{ supplier.country }}</td>
+    </tr>
+  </table>
+
+  <script>
+    jQuery(document).ready(function($) {
+      $('#editSupplier').click(function() {
+        location.href = "{{ root }}/supplier/edit/?id={{ supplier.supplier_id }}";
+      });
+      $('#deleteSupplier').click(function() {
+        var shouldDelete = confirm("Are sure you want to delete this supplier?");
+        if (shouldDelete) {
+          window.location = "{{ root }}/scripts/delete_supplier.php?id={{ supplier.supplier_id }}";
+        }
+      });
+    });
+  </script>
+{% endblock %}

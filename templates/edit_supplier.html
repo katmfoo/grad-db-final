@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Supplier{% endblock %}
+
+{% block content %}
+  <form action="{{ root }}/scripts/edit_supplier.php" method="post">
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="supplier_name">Supplier name</label>
+        <input type="text" class="form-control" id="supplier_name" name="supplier_name" placeholder="Supplier name" value="{{ supplier.supplier_name }}" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="first_name">First name</label>
+        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First name" value="{{ supplier.first_name }}" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="last_name">Last name</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" value="{{ supplier.last_name }}" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="job_title">Job title</label>
+        <input type="text" class="form-control" id="job_title" name="job_title" placeholder="Job title" value="{{ supplier.job_title }}" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="phone_number">Phone number</label>
+        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone number" value="{{ supplier.phone_number }}" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ supplier.address }}" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{ supplier.city }}" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="state" name="state" placeholder="State" value="{{ supplier.state }}" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="zip">Zip code</label>
+        <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip code" value="{{ supplier.zip }}" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="country">Country</label>
+        <input type="text" class="form-control" id="country" name="country" placeholder="Country" value="{{ supplier.country }}" required>
+      </div>
+    </div>
+    <input type="hidden" name="supplier_id" value="{{ supplier.supplier_id }}">
+    <button type="submit" class="btn btn-success">Edit Supplier</button>
+  </form>
+{% endblock %}

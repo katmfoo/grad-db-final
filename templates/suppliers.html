@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Suppliers{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-success mb-2" id="addSupplier">Add Supplier</button>
+      </div>
+      <div class="col">
+        <form action="{{ root }}/suppliers/" method="get">
+          <div class="input-group mb-3">
+            <input type="text" name="search" class="form-control" placeholder="Supplier name" {% if search %}value="{{ search }}"{% endif %}>
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% if suppliers %}
+    <table class="table table-hover button-above">
+      <thead>
+        <tr>
+          <th>Supplier name</th>
+          <th>Primary contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for supplier in suppliers %}
+          <tr class='clickable-row' data-href='{{ root }}/supplier/?id={{ supplier.supplier_id }}'>
+            <td>{{ supplier.supplier_name }}</td>
+            <td>{{ supplier.first_name }} {{ supplier.last_name }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="margin-top">No suppliers found</p>
+  {% endif %}
+  <div class="pagination-buttons">
+    <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>
+    <span>Page {{ page }}</span>
+    <button type="button" id="nextButton" class="btn btn-light btn-sm" {% if suppliers|length < page_size %}disabled{% endif %}>Next</button>
+  </div>
+
+  <script>
+    jQuery(document).ready(function($) {
+      $('#previousButton').click(function() {
+        if ('{{ search }}' != '') {
+        location.href = "{{ root }}/suppliers/?search={{ search }}&page={{ page - 1}}";
+        } else {
+          location.href = "{{ root }}/suppliers/?page={{ page - 1}}";
+        }
+      });
+      $('#nextButton').click(function() {
+        if ('{{ search }}' != '') {
+        location.href = "{{ root }}/suppliers/?search={{ search }}&page={{ page + 1}}";
+        } else {
+          location.href = "{{ root }}/suppliers/?page={{ page + 1}}";
+        }
+      });
+      $('#addSupplier').click(function() {
+        location.href = "{{ root }}/suppliers/add/";
+      });
+    });
+  </script>
+
+{% endblock %}
