@@ -4,6 +4,7 @@ require_once 'vendor/autoload.php';
 
 $_ROOT = '/grad-db-final';
 $_ITEMS_PER_PAGE = 12;
+$_CATEGORY_COLORS = array('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark');
 
 if (!session_id()) session_start();
 

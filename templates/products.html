@@ -19,6 +19,7 @@
         <form action="{{ root }}/products/" method="get">
           <div class="input-group mb-3">
             <input type="text" name="search" class="form-control" placeholder="Product name" {% if search %}value="{{ search }}"{% endif %}>
+            {% if category %}<input type="hidden" name="category" value="{{ category }}">{% endif %}
             <div class="input-group-append">
               <button class="btn btn-primary" type="submit">Search</button>
             </div>
@@ -32,7 +33,7 @@
     <div class="card-columns">
       {% for product in products %}
         <div class="card clickable">
-          <a href="{{ root }}/products/?id={{ product.product_id }}&seller_id={{ product.seller_id }}"></a>
+          <a class="hidden" href="{{ root }}/products/?id={{ product.product_id }}&seller_id={{ product.seller_id }}"></a>
           <div class="card-header">{{ product.name }}</div>
           <div class="card-body">
             <div style="margin-top: -7px;" class="clearfix">
@@ -47,8 +48,9 @@
                 <small class="text-danger">(Out of stock)</small>
               {% endif %}
             </div>
-            <span class="badge badge-primary">Primary</span>
-            <span class="badge badge-secondary">Secondary</span>
+            {% for category in product.categories %}
+              <a href="{{ root }}/products/?category={{ category.name }}" class="badge badge-pill badge-{{ category.color }}">{{ category.name }}</a>
+            {% endfor %}
           </div>
         </div>
       {% endfor %}
@@ -64,19 +66,28 @@
 
   <script>
     jQuery(document).ready(function($) {
+      $('a.badge').click(function(event) {
+        event.stopPropagation();
+      });
       $('#previousButton').click(function() {
+        var link = "{{ root }}/products/?page={{ page - 1}}";
         if ('{{ search }}' != '') {
-          location.href = "{{ root }}/products/?search={{ search }}&page={{ page - 1}}";
-        } else {
-          location.href = "{{ root }}/products/?page={{ page - 1}}";
+          link += "&search={{ search }}";
         }
+        if ('{{ category }}' != '') {
+          link += "&category={{ category }}";
+        }
+        location.href = link;
       });
       $('#nextButton').click(function() {
+        var link = "{{ root }}/products/?page={{ page + 1}}";
         if ('{{ search }}' != '') {
-          location.href = "{{ root }}/products/?search={{ search }}&page={{ page + 1}}";
-        } else {
-          location.href = "{{ root }}/products/?page={{ page + 1}}";
+          link += "&search={{ search }}";
         }
+        if ('{{ category }}' != '') {
+          link += "&category={{ category }}";
+        }
+        location.href = link;
       });
       $('#addProduct').click(function() {
         location.href = "{{ root }}/products/add/";
