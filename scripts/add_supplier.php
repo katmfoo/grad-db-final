@@ -28,7 +28,7 @@ $sql = "INSERT INTO supplier (supplier_name, first_name, last_name, job_title, p
 if (mysqli_query($conn, $sql)) {
     $supplier_id = mysqli_insert_id($conn);
     $_SESSION['flash'] = "Supplier created successfully";
-    header('Location: '.$_ROOT.'/supplier/?id='.$supplier_id);
+    header('Location: '.$_ROOT.'/suppliers/?id='.$supplier_id);
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     return;

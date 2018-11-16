@@ -26,7 +26,7 @@ $sql = "UPDATE supplier SET supplier_name = '".$supplier_name."', first_name = '
 
 if (mysqli_query($conn, $sql)) {
     $_SESSION['flash'] = "Supplier edited successfully";
-    header('Location: '.$_ROOT.'/supplier/?id='.$supplier_id);
+    header('Location: '.$_ROOT.'/suppliers/?id='.$supplier_id);
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     return;

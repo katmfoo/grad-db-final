@@ -32,7 +32,7 @@
       </thead>
       <tbody>
         {% for supplier in suppliers %}
-          <tr class='clickable-row' data-href='{{ root }}/supplier/?id={{ supplier.supplier_id }}'>
+          <tr class='clickable-row' data-href='{{ root }}/suppliers/?id={{ supplier.supplier_id }}'>
             <td>{{ supplier.supplier_name }}</td>
             <td>{{ supplier.first_name }} {{ supplier.last_name }}</td>
           </tr>
