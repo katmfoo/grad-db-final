@@ -4,43 +4,31 @@
 
 {% block content %}
 
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-success mb-2" id="addCustomer">Add Customer</button>
-      </div>
-      <div class="col">
-        <form action="{{ root }}/customers/" method="get">
-          <div class="input-group mb-3">
-            <input type="text" name="search" class="form-control" placeholder="Name" {% if search %}value="{{ search }}"{% endif %}>
-            <div class="input-group-append">
-              <button class="btn btn-primary" type="submit">Search</button>
-            </div>
-          </div>
-        </form>
+  <form class="form-inline top-bar" action="{{ root }}/customers/" method="get">
+    <button type="button" class="btn btn-success mb-2" id="addCustomer">Add Customer</button>
+    <div class="input-group mb-2 search">
+      <input type="text" name="search" class="form-control" placeholder="Customer name" {% if search %}value="{{ search }}"{% endif %}>
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">Search</button>
       </div>
     </div>
-  </div>
+  </form>
 
   {% if customers %}
-    <table class="table table-hover table-sm button-above">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Origin</th>
+    <table class="table table-bordered table-sm">
+      <tr class="header">
+        <td>Name</td>
+        <td>Origin</td>
+      </tr>
+      {% for customer in customers %}
+        <tr class='clickable-row' data-href='{{ root }}/customers/?id={{ customer.customer_id }}&seller_id={{ customer.seller_id }}'>
+          <td>{{ customer.first_name }} {{ customer.last_name }}</td>
+          <td>{{ customer.seller }}</td>
         </tr>
-      </thead>
-      <tbody>
-        {% for customer in customers %}
-          <tr class='clickable-row' data-href='{{ root }}/customers/?id={{ customer.customer_id }}&seller_id={{ customer.seller_id }}'>
-            <td>{{ customer.first_name }} {{ customer.last_name }}</td>
-            <td>{{ customer.seller }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
+      {% endfor %}
     </table>
   {% else %}
-    <p class="margin-top">No customers found</p>
+    <p class="no-results">No customers found</p>
   {% endif %}
   <div class="pagination-buttons">
     <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>

@@ -4,26 +4,24 @@
 
 {% block content %}
   {% if customer.seller_id == 1 %}
-    <div>
+    <div class="top-button-bar">
       <button type="button" class="btn btn-primary mb-2" id="editCustomer">Edit Customer</button>
       <button type="button" class="btn btn-danger mb-2" id="deleteCustomer">Delete Customer</button>
     </div>
   {% endif %}
 
-  <br>
-
   <h5>Customer info</h5>
   <table class="table table-sm table-bordered">
     <tr>
-      <td>Origin</td>
+      <td class="header">Origin</td>
       <td>{{ customer.seller }}</td>
     </tr>
     <tr>
-      <td>Name</td>
+      <td class="header">Name</td>
       <td>{{ customer.first_name }} {{ customer.last_name }}</td>
     </tr>
     <tr>
-      <td>Address</td>
+      <td class="header">Address</td>
       <td>{{ customer.address }}, {{ customer.city }} {{ customer.state }}, {{ customer.zip }} {{ customer.country }}</td>
     </tr>
   </table>

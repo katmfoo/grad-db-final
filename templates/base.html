@@ -26,16 +26,29 @@
         margin-bottom: 15px;
       }
 
-      table.button-above {
-        margin-top: 17px;
+      .top-button-bar {
+        margin-bottom: 10px;
+      }
+
+      form.top-bar {
+        margin-bottom: 6px;
+      }
+
+      form.top-bar div.search {
+        flex-grow: 1;
+        margin-left: 13px;
       }
 
       tr.clickable-row {
         cursor: pointer;
       }
 
-      p.margin-top {
-        margin-top: 11px;
+      tr.clickable-row:hover {
+        background-color: #dee2e6;
+      }
+
+      tr.header, td.header {
+        font-weight: bold;
       }
 
       .pagination-buttons {
@@ -44,6 +57,10 @@
 
       .pagination-buttons span {
         margin: 0 10px;
+      }
+
+      .card-columns {
+        column-count: 2;
       }
 
       .card-header {
@@ -68,6 +85,11 @@
 
       .card.clickable:hover .card-header {
         border-color: rgba(0, 0, 0, 0.29);
+      }
+
+      .no-results {
+        font-style: italic;
+        color: #737373;
       }
     </style>
 

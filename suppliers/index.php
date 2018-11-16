@@ -11,6 +11,19 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($conn, $sql);
     $supplier = mysqli_fetch_assoc($result);
 
+    $sql = "SELECT * FROM product WHERE supplier_id =".$supplier_id;
+
+    $result = mysqli_query($conn, $sql);
+    $products = array();
+    
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($products, $row);
+        }
+    }
+
+    $supplier['products'] = $products;
+
     echo $twig->render('supplier.html', array('supplier' => $supplier));
 } else {
     if (isset($_GET['page'])) {

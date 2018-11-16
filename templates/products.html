@@ -4,30 +4,16 @@
 
 {% block content %}
 
-  <style>
-    .card-columns {
-      column-count: 2;
-    }
-  </style>
-
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-success mb-2" id="addProduct">Add Product</button>
-      </div>
-      <div class="col">
-        <form action="{{ root }}/products/" method="get">
-          <div class="input-group mb-3">
-            <input type="text" name="search" class="form-control" placeholder="Product name" {% if search %}value="{{ search }}"{% endif %}>
-            {% if category %}<input type="hidden" name="category" value="{{ category }}">{% endif %}
-            <div class="input-group-append">
-              <button class="btn btn-primary" type="submit">Search</button>
-            </div>
-          </div>
-        </form>
+  <form class="form-inline top-bar" action="{{ root }}/products/" method="get">
+    <button type="button" class="btn btn-success mb-2" id="addProduct">Add Product</button>
+    <div class="input-group mb-2 search">
+      <input type="text" name="search" class="form-control" placeholder="Product name" {% if search %}value="{{ search }}"{% endif %}>
+      {% if category %}<input type="hidden" name="category" value="{{ category }}">{% endif %}
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">Search</button>
       </div>
     </div>
-  </div>
+  </form>
 
   {% if products %}
     <div class="card-columns">
@@ -56,7 +42,7 @@
       {% endfor %}
     </div>
   {% else %}
-    <p class="margin-top">No products found</p>
+    <p class="no-results">No products found</p>
   {% endif %}
   <div class="pagination-buttons">
     <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>

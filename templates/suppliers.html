@@ -4,43 +4,31 @@
 
 {% block content %}
 
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-success mb-2" id="addSupplier">Add Supplier</button>
-      </div>
-      <div class="col">
-        <form action="{{ root }}/suppliers/" method="get">
-          <div class="input-group mb-3">
-            <input type="text" name="search" class="form-control" placeholder="Supplier name" {% if search %}value="{{ search }}"{% endif %}>
-            <div class="input-group-append">
-              <button class="btn btn-primary" type="submit">Search</button>
-            </div>
-          </div>
-        </form>
+  <form class="form-inline top-bar" action="{{ root }}/suppliers/" method="get">
+    <button type="button" class="btn btn-success mb-2" id="addSupplier">Add Supplier</button>
+    <div class="input-group mb-2 search">
+      <input type="text" name="search" class="form-control" placeholder="Customer name" {% if search %}value="{{ search }}"{% endif %}>
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">Search</button>
       </div>
     </div>
-  </div>
+  </form>
 
   {% if suppliers %}
-    <table class="table table-hover table-sm button-above">
-      <thead>
-        <tr>
-          <th>Supplier name</th>
-          <th>Primary contact</th>
+    <table class="table table-sm table-bordered">
+      <tr class="header">
+        <td>Supplier name</td>
+        <td>Primary contact</td>
+      </tr>
+      {% for supplier in suppliers %}
+        <tr class='clickable-row' data-href='{{ root }}/suppliers/?id={{ supplier.supplier_id }}'>
+          <td>{{ supplier.supplier_name }}</td>
+          <td>{{ supplier.first_name }} {{ supplier.last_name }}</td>
         </tr>
-      </thead>
-      <tbody>
-        {% for supplier in suppliers %}
-          <tr class='clickable-row' data-href='{{ root }}/suppliers/?id={{ supplier.supplier_id }}'>
-            <td>{{ supplier.supplier_name }}</td>
-            <td>{{ supplier.first_name }} {{ supplier.last_name }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
+      {% endfor %}
     </table>
   {% else %}
-    <p class="margin-top">No suppliers found</p>
+    <p class="no-results">No suppliers found</p>
   {% endif %}
   <div class="pagination-buttons">
     <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>

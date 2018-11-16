@@ -4,43 +4,51 @@
 
 {% block content %}
   {% if product.seller_id == 1 %}
-    <div>
+    <div class="top-button-bar">
       <button type="button" class="btn btn-primary mb-2" id="editProduct">Edit Product</button>
       <button type="button" class="btn btn-danger mb-2" id="deleteProduct">Delete Product</button>
     </div>
   {% endif %}
 
-  <br>
-
   <h5>Product info</h5>
   <table class="table table-sm table-bordered">
     <tr>
-      <td>Origin</td>
+      <td class="header">Origin</td>
       <td>{{ product.seller }}</td>
     </tr>
     <tr>
-      <td>Name</td>
+      <td class="header">Name</td>
       <td>{{ product.name }}</td>
     </tr>
     {% if product.product_code %}
       <tr>
-        <td>Product code</td>
+        <td class="header">Product code</td>
         <td>{{ product.product_code }}</td>
       </tr>
     {% endif %}
     <tr>
-      <td>{% if product.seller_id == 4 %}Rental rate{% else %}List price{% endif %}</td>
+      <td class="header">{% if product.seller_id == 4 %}Rental rate{% else %}List price{% endif %}</td>
       <td>${{ product.cost|number_format(2) }}</td>
     </tr>
     <tr>
-      <td>Availability</td>
+      <td class="header">Availability</td>
       <td>
-          {% if product.quantity_available > 0 %}
-            <span class="text-success">{{ product.quantity_available }} left</span>
-          {% else %}
-            <span class="text-danger">Out of stock</span>
-          {% endif %}</td>
+        {% if product.quantity_available > 0 %}
+          <span class="text-success">{{ product.quantity_available }} left</span>
+        {% else %}
+          <span class="text-danger">Out of stock</span>
+        {% endif %}</td>
     </tr>
+    {% if product.categories %}
+      <tr>
+        <td class="header">Categories</td>
+        <td>
+          {% for category in product.categories %}
+            <span class="badge badge-pill badge-{{ category.color }}">{{ category.name }}</span>
+          {% endfor %}
+        </td>
+      </tr>
+    {% endif %}
   </table>
 
   <script>
