@@ -32,7 +32,7 @@
     <div class="card-columns">
       {% for product in products %}
         <div class="card clickable">
-          <a href="http://google.com">link</a>
+          <a href="{{ root }}/products/?id={{ product.product_id }}&seller_id={{ product.seller_id }}"></a>
           <div class="card-header">{{ product.name }}</div>
           <div class="card-body">
             <div style="margin-top: -7px;" class="clearfix">

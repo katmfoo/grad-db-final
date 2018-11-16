@@ -10,6 +10,18 @@
 
   <br>
 
+  <h5>Supplier info</h5>
+  <table class="table table-sm table-bordered">
+    <tr>
+      <td>Name</td>
+      <td>{{ supplier.supplier_name }}</td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>{{ supplier.address }}, {{ supplier.city }} {{ supplier.state }}, {{ supplier.zip }} {{ supplier.country }}</td>
+    </tr>
+  </table>
+
   <h5>Primary contact</h5>
   <table class="table table-sm table-bordered">
     <tr>
@@ -23,14 +35,6 @@
     <tr>
       <td>Phone number</td>
       <td>{{ supplier.phone_number }}</td>
-    </tr>
-  </table>
-
-  <h5>Location</h5>
-  <table class="table table-sm table-bordered">
-    <tr>
-      <td>Address</td>
-      <td>{{ supplier.address }}, {{ supplier.city }} {{ supplier.state }}, {{ supplier.zip }} {{ supplier.country }}</td>
     </tr>
   </table>
 
