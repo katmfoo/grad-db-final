@@ -57,7 +57,7 @@
   {% endif %}
 
   <script>
-    jQuery(document).ready(function($) {
+    $(document).ready(function($) {
       $('#editSupplier').click(function() {
         location.href = "{{ root }}/suppliers/edit/?id={{ supplier.supplier_id }}";
       });

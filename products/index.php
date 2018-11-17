@@ -68,8 +68,21 @@ if (isset($_GET['id'])) {
             array_push($product['categories'], array('name' => $category_name, 'color' => $_CATEGORY_COLORS[$color_num]));
         }
     }
+
+    $sql = "SELECT * FROM category_view";
+
+    $result = mysqli_query($conn, $sql);
+    $categories = array();
     
-    $vars = array('products' => $products, 'page' => $page, 'page_size' => $_ITEMS_PER_PAGE);
+    if ($result) {
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($categories, $row['name']);
+            }
+        }
+    }
+    
+    $vars = array('products' => $products, 'page' => $page, 'page_size' => $_ITEMS_PER_PAGE, 'categories' => $categories);
     if (isset($search) && $search) { $vars['search'] = $search; }
     if (isset($category) && $category) { $vars['category'] = $category; }
     

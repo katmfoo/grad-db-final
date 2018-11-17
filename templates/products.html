@@ -6,6 +6,20 @@
 
   <form class="form-inline top-bar" action="{{ root }}/products/" method="get">
     <button type="button" class="btn btn-success mb-2" id="addProduct">Add Product</button>
+    <div class="btn-group mb-2 second-button">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Filter Category
+      </button>
+      <div class="dropdown-menu">
+        {% if category %}
+          <a class="dropdown-item" href="{{ root }}/products/">All categories</a>
+          <div class="dropdown-divider"></div>
+        {% endif %}
+        {% for category_l in categories %}
+          <a class="dropdown-item{% if category_l == category %} active{% endif %}" href="{{ root }}/products/?category={{ category_l }}">{{ category_l }}</a>
+        {% endfor %}
+      </div>
+    </div>
     <div class="input-group mb-2 search">
       <input type="text" name="search" class="form-control" placeholder="Product name" {% if search %}value="{{ search }}"{% endif %}>
       {% if category %}<input type="hidden" name="category" value="{{ category }}">{% endif %}
@@ -51,7 +65,7 @@
   </div>
 
   <script>
-    jQuery(document).ready(function($) {
+    $(document).ready(function($) {
       $('a.badge').click(function(event) {
         event.stopPropagation();
       });

@@ -27,7 +27,7 @@
   </table>
 
   <script>
-    jQuery(document).ready(function($) {
+    $(document).ready(function($) {
       $('#editCustomer').click(function() {
         location.href = "{{ root }}/customers/edit/?id={{ customer.customer_id }}";
       });

@@ -52,7 +52,7 @@
   </table>
 
   <script>
-    jQuery(document).ready(function($) {
+    $(document).ready(function($) {
       $('#editProduct').click(function() {
         location.href = "{{ root }}/products/edit/?id={{ product.product_id }}";
       });

@@ -37,7 +37,7 @@
   </div>
 
   <script>
-    jQuery(document).ready(function($) {
+    $(document).ready(function($) {
       $('#previousButton').click(function() {
         if ('{{ search }}' != '') {
           location.href = "{{ root }}/suppliers/?search={{ search }}&page={{ page - 1}}";
