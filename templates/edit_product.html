@@ -5,14 +5,27 @@
 {% block content %}
   <form action="{{ root }}/scripts/edit_product.php" method="post">
     <div class="form-row">
-      <div class="form-group col-sm-6">
+      <div class="form-group col-sm-12">
         <label for="name">Product name</label>
         <input type="text" class="form-control" id="name" name="name" placeholder="Product name" value="{{ product.name }}" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-sm-6">
+        <label for="category_id">Category</label>
+        <select class="form-control" id="category_id" name="category_id" required>
+          <option value="null" {% if product.category_id == null %}selected{% endif %}>No category</option>
+          {% for category in categories %}
+            <option value="{{ category.category_id }}" {% if category.category_id == product.category_id %}selected{% endif %}>{{ category.name }}</option>
+          {% endfor %}
+        </select>
       </div>
       <div class="form-group col-sm-6">
         <label for="supplier_id">Supplier</label>
         <select class="form-control" id="supplier_id" name="supplier_id" required>
-          {% for supplier in suppliers %}<option value="{{ supplier.supplier_id }}" {% if supplier.supplier_id == product.supplier_id %}selected{% endif %}>{{ supplier.supplier_name }}</option>{% endfor %}
+          {% for supplier in suppliers %}
+            <option value="{{ supplier.supplier_id }}" {% if supplier.supplier_id == product.supplier_id %}selected{% endif %}>{{ supplier.supplier_name }}</option>
+          {% endfor %}
         </select>
       </div>
     </div>

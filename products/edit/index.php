@@ -20,6 +20,16 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 
-echo $twig->render('edit_product.html', array('product' => $product, 'suppliers' => $suppliers));
+$sql = "SELECT category_id, name FROM category ORDER BY name ASC";
+$result = mysqli_query($conn, $sql);
+$categories = array();
+
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        array_push($categories, $row);
+    }
+}
+
+echo $twig->render('edit_product.html', array('product' => $product, 'suppliers' => $suppliers, 'categories' => $categories));
 
 ?>
