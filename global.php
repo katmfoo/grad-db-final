@@ -25,4 +25,7 @@ if (isset($_SESSION['current_customer_id']) && isset($_SESSION['current_customer
     $twig->addGlobal('current_customer', array('id' => $_SESSION['current_customer_id'], 'name' => $current_customer['name'], 'seller_id' => $_SESSION['current_customer_seller_id']));
 }
 
+$link_back = urlencode("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+$twig->addGlobal('link_back', $link_back);
+
 ?>

@@ -125,7 +125,7 @@
         {% block title %}{% endblock %}
         {% if current_customer %}
           <span class="current-customer">
-              Current customer: {{ current_customer.name }}
+              Current customer: {{ current_customer.name }} <a href="{{ root }}/scripts/clear_current_customer.php?link_back={{ link_back }}">(clear)</a>
           </span>
         {% endif %}</h4>
 
