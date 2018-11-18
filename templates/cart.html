@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}{{ current_customer.name }}'s Cart{% endblock %}
+
+{% block content %}
+  <div class="top-button-bar">
+    {% if cart_items %}
+      <button type="button" class="btn btn-secondary mb-2" id="checkout">Checkout</button>
+    {% endif %}
+  </div>
+
+  <h5>Products in cart</h5>
+  {% if cart_items %}
+    <table class="table table-sm table-bordered">
+      <tr class="header">
+        <td>Product</td>
+        <td>Quantity</td>
+        <td>Cost</td>
+        <td>Actions</td>
+      </tr>
+      {% for cart_item in cart_items %}
+        <tr>
+          <td>{{ cart_item.name }} {% if cart_item.product_code %}({{ cart_item.product_code }}){% endif %}</td>
+          <td>{{ cart_item.quantity }} (<a id="editButton{{ cart_item.product_id }}_{{cart_item.product_seller_id }}" href="#">edit</a>)</td>
+          <td>${{ (cart_item.quantity * cart_item.cost)|number_format(2) }}</td>
+          <td>
+            <a id="removeButton{{ cart_item.product_id }}_{{cart_item.product_seller_id }}" href="#">Remove from cart</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="no-results">No products in cart</p>
+  {% endif %}
+
+  <script>
+    $(document).ready(function($) {
+      $('#checkout').click(function() {
+        
+      });
+
+      {% for cart_item in cart_items %}
+        $('#editButton{{ cart_item.product_id }}_{{cart_item.product_seller_id }}').click(function() {
+          var response = prompt("New quantity");
+          location.href = "{{ root }}/scripts/edit_cart_item_quantity.php?customer_id={{ cart_item.customer_id }}&customer_seller_id={{ cart_item.customer_seller_id }}&product_id={{ cart_item.product_id }}&product_seller_id={{ cart_item.product_seller_id }}&quantity=" + response;
+        });
+        $('#removeButton{{ cart_item.product_id }}_{{cart_item.product_seller_id }}').click(function() {
+          location.href = "{{ root }}/scripts/remove_cart_item.php?customer_id={{ cart_item.customer_id }}&customer_seller_id={{ cart_item.customer_seller_id }}&product_id={{ cart_item.product_id }}&product_seller_id={{ cart_item.product_seller_id }}";
+        });
+      {% endfor %}
+    });
+  </script>
+{% endblock %}

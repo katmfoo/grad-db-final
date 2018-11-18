@@ -18,6 +18,11 @@ if (isset($_SESSION['flash'])) {
     unset($_SESSION['flash']);
 }
 
+if (isset($_SESSION['flash_error'])) {
+    $twig->addGlobal('flash_error', $_SESSION['flash_error']);
+    unset($_SESSION['flash_error']);
+}
+
 if (isset($_SESSION['current_customer_id']) && isset($_SESSION['current_customer_seller_id'])) {
     $sql = "SELECT CONCAT(first_name, ' ', last_name) as name FROM customer_view WHERE customer_id = ".$_SESSION['current_customer_id']." AND seller_id = ".$_SESSION['current_customer_seller_id'];
     $result = mysqli_query($conn, $sql);

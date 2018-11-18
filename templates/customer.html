@@ -3,15 +3,15 @@
 {% block title %}Customer &middot; {{ customer.first_name }} {{ customer.last_name }}{% endblock %}
 
 {% block content %}
-  {% if customer.seller_id == 1 or customer.customer_id != current_customer.id %}
-    <div class="top-button-bar clearfix">
-      {% if customer.seller_id == 1 %}
-        <button type="button" class="btn btn-primary mb-2" id="editCustomer">Edit Customer</button>
-        <button type="button" class="btn btn-danger mb-2" id="deleteCustomer">Delete Customer</button>
-      {% endif %}
-      <button type="button" class="btn btn-light mb-2" style="float: right;" id="setCurrentCustomer">Set Current</button>
-    </div>
-  {% endif %}
+  <div class="top-button-bar clearfix">
+    {% if customer.customer_id != current_customer.id %}
+      <button type="button" class="btn btn-secondary mb-2" id="setCurrentCustomer">Log In As</button>
+    {% endif %}
+    {% if customer.seller_id == 1 %}
+      <button type="button" class="btn btn-primary mb-2" id="editCustomer">Edit Customer</button>
+      <button type="button" class="btn btn-danger mb-2" id="deleteCustomer">Delete Customer</button>
+    {% endif %}
+  </div>
 
   <h5>Customer info</h5>
   <table class="table table-sm table-bordered">
@@ -41,7 +41,7 @@
         }
       });
       $('#setCurrentCustomer').click(function() {
-        location.href = "{{ root }}/scripts/set_current_customer.php?id={{ customer.customer_id }}&seller_id={{ customer.seller_id }}";
+        location.href = "{{ root }}/scripts/set_current_customer.php?customer_id={{ customer.customer_id }}&seller_id={{ customer.seller_id }}";
       });
     });
   </script>

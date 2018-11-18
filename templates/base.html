@@ -121,11 +121,17 @@
         </div>
       {% endif %}
 
+      {% if flash_error %}
+        <div class="alert alert-danger" role="alert">
+          {{ flash_error }}
+        </div>
+      {% endif %}
+
       <h4 class="title">
         {% block title %}{% endblock %}
         {% if current_customer %}
           <span class="current-customer">
-              Current customer: {{ current_customer.name }} <a href="{{ root }}/scripts/clear_current_customer.php?link_back={{ link_back }}">(clear)</a>
+              Logged in as: <a href="{{ root }}/customers/?id={{ current_customer.id }}&seller_id={{ current_customer.seller_id }}">{{ current_customer.name }}</a> <a href="{{ root }}/scripts/clear_current_customer.php?link_back={{ link_back }}">(log out)</a> - <a href="{{ root }}/cart/">Cart</a>
           </span>
         {% endif %}</h4>
 
