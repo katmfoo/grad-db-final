@@ -1,7 +1,6 @@
 <?php
 
 require_once '../../global.php';
-require_once '../../db.php';
 
 $sql = "SELECT supplier_id, supplier_name FROM supplier ORDER BY supplier_name ASC";
 $result = mysqli_query($conn, $sql);

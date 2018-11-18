@@ -12,7 +12,7 @@
 
     <style>
       .base-container {
-        width: 600px;
+        width: 900px;
         margin: 30px auto;
       }
 
@@ -64,7 +64,7 @@
       }
 
       .card-columns {
-        column-count: 2;
+        column-count: 3;
       }
 
       .card-header {
@@ -95,6 +95,14 @@
         font-style: italic;
         color: #737373;
       }
+
+      span.current-customer {
+        font-size: 14px;
+        color: gray;
+        float: right;
+        position: relative;
+        top: 10px;
+      }
     </style>
 
     <!-- Optional JavaScript -->
@@ -113,7 +121,13 @@
         </div>
       {% endif %}
 
-      <h4 class="title">{% block title %}{% endblock %}</h4>
+      <h4 class="title">
+        {% block title %}{% endblock %}
+        {% if current_customer %}
+          <span class="current-customer">
+              Current customer: {{ current_customer.name }}
+          </span>
+        {% endif %}</h4>
 
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

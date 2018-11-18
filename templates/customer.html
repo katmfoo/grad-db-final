@@ -3,10 +3,13 @@
 {% block title %}Customer &middot; {{ customer.first_name }} {{ customer.last_name }}{% endblock %}
 
 {% block content %}
-  {% if customer.seller_id == 1 %}
-    <div class="top-button-bar">
-      <button type="button" class="btn btn-primary mb-2" id="editCustomer">Edit Customer</button>
-      <button type="button" class="btn btn-danger mb-2" id="deleteCustomer">Delete Customer</button>
+  {% if customer.seller_id == 1 or customer.customer_id != current_customer.id %}
+    <div class="top-button-bar clearfix">
+      {% if customer.seller_id == 1 %}
+        <button type="button" class="btn btn-primary mb-2" id="editCustomer">Edit Customer</button>
+        <button type="button" class="btn btn-danger mb-2" id="deleteCustomer">Delete Customer</button>
+      {% endif %}
+      <button type="button" class="btn btn-light mb-2" style="float: right;" id="setCurrentCustomer">Set Current</button>
     </div>
   {% endif %}
 
@@ -36,6 +39,9 @@
         if (shouldDelete) {
           window.location = "{{ root }}/scripts/delete_customer.php?id={{ customer.customer_id }}";
         }
+      });
+      $('#setCurrentCustomer').click(function() {
+        location.href = "{{ root }}/scripts/set_current_customer.php?id={{ customer.customer_id }}&seller_id={{ customer.seller_id }}";
       });
     });
   </script>

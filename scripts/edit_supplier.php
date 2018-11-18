@@ -1,7 +1,6 @@
 <?php
 
 require_once '../global.php';
-require_once '../db.php';
 
 $supplier_id = htmlspecialchars($_POST['supplier_id']);
 $supplier_name = htmlspecialchars($_POST['supplier_name']);

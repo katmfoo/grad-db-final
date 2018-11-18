@@ -1,6 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
+require_once 'db.php';
 
 $_ROOT = '/grad-db-final';
 $_ITEMS_PER_PAGE = 12;
@@ -15,6 +16,13 @@ $twig->addGlobal('root', $_ROOT);
 if (isset($_SESSION['flash'])) {
     $twig->addGlobal('flash', $_SESSION['flash']);
     unset($_SESSION['flash']);
+}
+
+if (isset($_SESSION['current_customer_id']) && isset($_SESSION['current_customer_seller_id'])) {
+    $sql = "SELECT CONCAT(first_name, ' ', last_name) as name FROM customer_view WHERE customer_id = ".$_SESSION['current_customer_id']." AND seller_id = ".$_SESSION['current_customer_seller_id'];
+    $result = mysqli_query($conn, $sql);
+    $current_customer = mysqli_fetch_assoc($result);
+    $twig->addGlobal('current_customer', array('id' => $_SESSION['current_customer_id'], 'name' => $current_customer['name'], 'seller_id' => $_SESSION['current_customer_seller_id']));
 }
 
 ?>

@@ -1,7 +1,6 @@
 <?php
 
 require_once '../global.php';
-require_once '../db.php';
 
 $first_name = htmlspecialchars($_POST['first_name']);
 $last_name = htmlspecialchars($_POST['last_name']);
