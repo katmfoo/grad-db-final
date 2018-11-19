@@ -29,6 +29,26 @@
     </tr>
   </table>
 
+  <h5>Orders</h5>
+  {% if orders %}
+    <table class="table table-sm table-bordered">
+      <tr class="header">
+        <td>Order code</td>
+        <td>Total</td>
+        <td>Placed on</td>
+      </tr>
+      {% for order in orders %}
+        <tr class='clickable-row' data-href='{{ root }}/orders/?id={{ order.order_id }}'>
+          <td>{{ order.order_code }}</td>
+          <td>${{ order.order_total|number_format(2) }}</td>
+          <td>{{ order.order_datetime }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="no-results">This customer has not placed any orders</p>
+  {% endif %}
+
   <script>
     $(document).ready(function($) {
       $('#editCustomer').click(function() {

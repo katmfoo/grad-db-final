@@ -11,7 +11,17 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($conn, $sql);
     $customer = mysqli_fetch_assoc($result);
 
-    echo $twig->render('customer.html', array('customer' => $customer));
+    $sql = "SELECT * FROM order_view WHERE customer_id = ".$customer_id." AND customer_seller_id = '".$seller_id."'";
+    $result = mysqli_query($conn, $sql);
+    $orders = array();
+    
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($orders, $row);
+        }
+    }
+
+    echo $twig->render('customer.html', array('customer' => $customer, 'orders' => $orders));
 } else {
     if (isset($_GET['page'])) {
         $page = htmlspecialchars($_GET['page']);
