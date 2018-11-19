@@ -28,6 +28,11 @@ if (isset($_SESSION['current_customer_id']) && isset($_SESSION['current_customer
     $result = mysqli_query($conn, $sql);
     $current_customer = mysqli_fetch_assoc($result);
     $twig->addGlobal('current_customer', array('id' => $_SESSION['current_customer_id'], 'name' => $current_customer['name'], 'seller_id' => $_SESSION['current_customer_seller_id']));
+
+    $sql = "SELECT COALESCE(SUM(quantity), 0) as num_cart_items FROM cart_item WHERE customer_id = ".$_SESSION['current_customer_id']." AND customer_seller_id = ".$_SESSION['current_customer_seller_id'];
+    $result = mysqli_query($conn, $sql);
+    $num_cart_items = mysqli_fetch_assoc($result)['num_cart_items'];
+    $twig->addGlobal('num_cart_items', $num_cart_items);
 }
 
 $link_back = urlencode("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");

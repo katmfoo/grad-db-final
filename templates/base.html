@@ -96,12 +96,11 @@
         color: #737373;
       }
 
-      span.current-customer {
+      div.current-customer {
         font-size: 14px;
         color: gray;
         float: right;
-        position: relative;
-        top: 10px;
+        text-align: right;
       }
     </style>
 
@@ -130,9 +129,14 @@
       <h4 class="title">
         {% block title %}{% endblock %}
         {% if current_customer %}
-          <span class="current-customer">
-              Logged in as: <a href="{{ root }}/customers/?id={{ current_customer.id }}&seller_id={{ current_customer.seller_id }}">{{ current_customer.name }}</a> <a href="{{ root }}/scripts/clear_current_customer.php?link_back={{ link_back }}">(log out)</a> - <a href="{{ root }}/cart/">Cart</a>
-          </span>
+          <div class="current-customer">
+            <div>
+                <a href="{{ root }}/customers/?id={{ current_customer.id }}&seller_id={{ current_customer.seller_id }}">{{ current_customer.name }}</a> <a href="{{ root }}/scripts/clear_current_customer.php?link_back={{ link_back }}">(log out)</a>
+            </div>
+            <div>
+              <a href="{{ root }}/cart/">View cart ({{ num_cart_items }} item{% if num_cart_items != 1 %}s{% endif %})</a>
+            </div>
+          </div>
         {% endif %}</h4>
 
       <nav class="navbar navbar-expand-sm navbar-light bg-light">

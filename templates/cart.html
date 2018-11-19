@@ -42,7 +42,9 @@
       {% for cart_item in cart_items %}
         $('#editButton{{ cart_item.product_id }}_{{cart_item.product_seller_id }}').click(function() {
           var response = prompt("New quantity");
-          location.href = "{{ root }}/scripts/edit_cart_item_quantity.php?customer_id={{ cart_item.customer_id }}&customer_seller_id={{ cart_item.customer_seller_id }}&product_id={{ cart_item.product_id }}&product_seller_id={{ cart_item.product_seller_id }}&quantity=" + response;
+          if (response) {
+            location.href = "{{ root }}/scripts/edit_cart_item_quantity.php?customer_id={{ cart_item.customer_id }}&customer_seller_id={{ cart_item.customer_seller_id }}&product_id={{ cart_item.product_id }}&product_seller_id={{ cart_item.product_seller_id }}&quantity=" + response;
+          }
         });
         $('#removeButton{{ cart_item.product_id }}_{{cart_item.product_seller_id }}').click(function() {
           location.href = "{{ root }}/scripts/remove_cart_item.php?customer_id={{ cart_item.customer_id }}&customer_seller_id={{ cart_item.customer_seller_id }}&product_id={{ cart_item.product_id }}&product_seller_id={{ cart_item.product_seller_id }}";

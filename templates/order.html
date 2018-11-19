@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Order &middot; {{order.order_code }}{% endblock %}
+
+{% block content %}
+  <h5>Order info</h5>
+  <table class="table table-sm table-bordered">
+    <tr>
+      <td class="header">Order code</td>
+      <td>{{ order.order_code }}</td>
+    </tr>
+    <tr>
+      <td class="header">Total</td>
+      <td>${{ order.order_total|number_format(2) }}</td>
+    </tr>
+    <tr>
+      <td class="header">Placed by</td>
+      <td>{{ order.customer_first_name }} {{ order.customer_last_name }}</td>
+    </tr>
+    <tr>
+      <td class="header">Placed on</td>
+      <td>{{ order.order_datetime }}</td>
+    </tr>
+  </table>
+  <h5>Products</h5>
+  <table class="table table-sm table-bordered">
+    <tr class="header">
+      <td>Product</td>
+      <td>Quantity</td>
+      <td>Cost</td>
+    </tr>
+    {% for order_item in order_items %}
+      <tr>
+        <td><a href="{{ root }}/products/?id={{ order_item.product_id }}&seller_id={{ order_item.seller_id }}">{{ order_item.name }} {% if order_item.product_code %}({{ order_item.product_code }}){% endif %}</a></td>
+        <td>{{ order_item.quantity }}</td>
+        <td>${{ order_item.cost }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <h5>Shipping info</h5>
+  <p>Shipping to {{ order.customer_first_name }} {{ order.customer_last_name }} at {{ order.shipping_address }}, {{ order.shipping_city }} {{ order.shipping_state }}, {{ order.shipping_zip }} {{ order.shipping_country }}</p>
+{% endblock %}

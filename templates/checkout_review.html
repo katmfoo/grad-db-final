@@ -13,7 +13,7 @@
       </tr>
       {% for cart_item in cart_items %}
         <tr>
-          <td>{{ cart_item.name }} {% if cart_item.product_code %}({{ cart_item.product_code }}){% endif %}</a></td>
+          <td>{{ cart_item.name }} {% if cart_item.product_code %}({{ cart_item.product_code }}){% endif %}</td>
           <td>{{ cart_item.quantity }}</td>
           <td>${{ (cart_item.quantity * cart_item.cost)|number_format(2) }}</td>
         </tr>
