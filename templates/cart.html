@@ -9,7 +9,7 @@
     {% endif %}
   </div>
 
-  <h5>Products in cart<span style="float: right;">Total: $ {{ total|number_format(2) }}</span></h5>
+  <h5>Products in cart<span style="float: right;">Total: ${{ total|number_format(2) }}</span></h5>
   {% if cart_items %}
     <table class="table table-sm table-bordered">
       <tr class="header">
@@ -36,7 +36,7 @@
   <script>
     $(document).ready(function($) {
       $('#checkout').click(function() {
-        
+        location.href = "{{ root }}/checkout/shipping/";
       });
 
       {% for cart_item in cart_items %}

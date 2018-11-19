@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout &middot; Review{% endblock %}
+
+{% block content %}
+  <h5>Products<span style="float: right;">Total: ${{ total|number_format(2) }}</span></h5>
+  {% if cart_items %}
+    <table class="table table-sm table-bordered">
+      <tr class="header">
+        <td>Product</td>
+        <td>Quantity</td>
+        <td>Cost</td>
+      </tr>
+      {% for cart_item in cart_items %}
+        <tr>
+          <td>{{ cart_item.name }} {% if cart_item.product_code %}({{ cart_item.product_code }}){% endif %}</a></td>
+          <td>{{ cart_item.quantity }}</td>
+          <td>${{ (cart_item.quantity * cart_item.cost)|number_format(2) }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="no-results">No products in cart</p>
+  {% endif %}
+  <h5>Shipping</h5>
+  <p>Shipping to {{ customer.first_name }} {{ customer.last_name }} at {{ address }}, {{ city }} {{ state }}, {{ zip }} {{ country }}</p>
+    <form action="{{ root }}/scripts/create_order.php" method="post">
+      <input type="hidden" name="address" value="{{ address }}">
+      <input type="hidden" name="city" value="{{ city }}">
+      <input type="hidden" name="state" value="{{ state }}">
+      <input type="hidden" name="zip" value="{{ zip }}">
+      <input type="hidden" name="country" value="{{ country }}">
+      <button type="submit" class="btn btn-success">Complete Order</button>
+    </form>
+{% endblock %}
