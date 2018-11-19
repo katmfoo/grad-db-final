@@ -9,7 +9,7 @@
     {% endif %}
   </div>
 
-  <h5>Products in cart</h5>
+  <h5>Products in cart<span style="float: right;">Total: $ {{ total|number_format(2) }}</span></h5>
   {% if cart_items %}
     <table class="table table-sm table-bordered">
       <tr class="header">
@@ -20,7 +20,7 @@
       </tr>
       {% for cart_item in cart_items %}
         <tr>
-          <td>{{ cart_item.name }} {% if cart_item.product_code %}({{ cart_item.product_code }}){% endif %}</td>
+          <td><a href="{{ root }}/products/?id={{ cart_item.product_id }}&seller_id={{ cart_item.product_seller_id }}">{{ cart_item.name }} {% if cart_item.product_code %}({{ cart_item.product_code }}){% endif %}</a></td>
           <td>{{ cart_item.quantity }} (<a id="editButton{{ cart_item.product_id }}_{{cart_item.product_seller_id }}" href="#">edit</a>)</td>
           <td>${{ (cart_item.quantity * cart_item.cost)|number_format(2) }}</td>
           <td>

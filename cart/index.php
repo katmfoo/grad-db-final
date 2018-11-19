@@ -14,13 +14,15 @@ $sql = "SELECT * FROM cart_item JOIN product_view ON cart_item.product_id = prod
 
 $result = mysqli_query($conn, $sql);
 $cart_items = array();
+$total = 0;
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         array_push($cart_items, $row);
+        $total += ($row['cost'] * $row['quantity']);
     }
 }
 
-echo $twig->render('cart.html', array('cart_items' => $cart_items));
+echo $twig->render('cart.html', array('cart_items' => $cart_items, 'total' => $total));
 
 ?>
