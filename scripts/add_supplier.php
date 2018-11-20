@@ -13,7 +13,7 @@ $state = htmlspecialchars($_POST['state']);
 $zip = htmlspecialchars($_POST['zip']);
 $country = htmlspecialchars($_POST['country']);
 
-$sql = "INSERT INTO address (address, city, state, zip, country) VALUES ('".$address."', '".$city."', '".$state."', '".$zip."', '".$country."')";
+$sql = "INSERT INTO address (address, city, state, zip, country, type) VALUES ('".$address."', '".$city."', '".$state."', '".$zip."', '".$country."', '3')";
 
 if (mysqli_query($conn, $sql)) {
     $address_id = mysqli_insert_id($conn);
