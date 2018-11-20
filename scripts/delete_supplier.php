@@ -10,9 +10,13 @@ if (mysqli_query($conn, $sql)) {
 
     $sql = "UPDATE product SET is_deleted = 1 WHERE supplier_id = ".$supplier_id;
     if (mysqli_query($conn, $sql)) {
-        $_SESSION['flash'] = "Supplier deleted successfully";
-        header('Location: '.$_ROOT.'/suppliers/');
-        return;
+
+        $sql = "DELETE cart_item FROM cart_item JOIN product ON cart_item.product_id = product.product_id WHERE product_seller_id = 1 AND product.supplier_id = ".$supplier_id;
+        if (mysqli_query($conn, $sql)) {
+            $_SESSION['flash'] = "Product deleted successfully";
+            header('Location: '.$_ROOT.'/products/');
+            return;
+        }
     }
 }
 
