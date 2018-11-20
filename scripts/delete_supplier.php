@@ -4,7 +4,7 @@ require_once '../global.php';
 
 $supplier_id = htmlspecialchars($_GET['id']);
 
-$sql = "DELETE FROM supplier WHERE supplier_id = ".$supplier_id;
+$sql = "UPDATE supplier SET is_deleted = 1 WHERE supplier_id = ".$supplier_id;
 
 if (mysqli_query($conn, $sql)) {
     $_SESSION['flash'] = "Supplier deleted successfully";

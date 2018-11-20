@@ -9,7 +9,7 @@ $sql = "SELECT * FROM product WHERE product_id = ".$product_id;
 $result = mysqli_query($conn, $sql);
 $product = mysqli_fetch_assoc($result);
 
-$sql = "SELECT supplier_id, supplier_name FROM supplier ORDER BY supplier_name ASC";
+$sql = "SELECT supplier_id, supplier_name FROM supplier WHERE is_deleted = 0 ORDER BY supplier_name ASC";
 $result = mysqli_query($conn, $sql);
 $suppliers = array();
 

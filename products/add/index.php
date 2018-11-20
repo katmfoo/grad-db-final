@@ -2,7 +2,7 @@
 
 require_once '../../global.php';
 
-$sql = "SELECT supplier_id, supplier_name FROM supplier ORDER BY supplier_name ASC";
+$sql = "SELECT supplier_id, supplier_name FROM supplier WHERE is_deleted = 0 ORDER BY supplier_name ASC";
 $result = mysqli_query($conn, $sql);
 $suppliers = array();
 
