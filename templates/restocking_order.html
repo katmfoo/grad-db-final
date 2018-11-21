@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Restocking Order{% endblock %}
+
+{% block content %}
+
+  {% if products %}
+    <table class="table table-sm table-bordered">
+      <tr class="header">
+        <td></td>
+        <td>Product name</td>
+        <td>Minimum stock level</td>
+        <td>Current stock level</td>
+      </tr>
+      {% for product in products %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td><a href="{{ root }}/products/?id={{ product.product_id }}&seller_id=1">{{ product.name }} ({{ product.product_code }})</a></td>
+          <td>{{ product.minimum_stock }}</td>
+          <td>{{ product.current_stock }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="no-results">No products found</p>
+  {% endif %}
+  <div class="pagination-buttons">
+    <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>
+    <span>Page {{ page }}</span>
+    <button type="button" id="nextButton" class="btn btn-light btn-sm" {% if products|length < page_size %}disabled{% endif %}>Next</button>
+  </div>
+
+  <script>
+    $(document).ready(function($) {
+      $('#previousButton').click(function() {
+        if ('{{ search }}' != '') {
+          location.href = "{{ root }}/suppliers/?search={{ search }}&page={{ page - 1}}";
+        } else {
+          location.href = "{{ root }}/suppliers/?page={{ page - 1}}";
+        }
+      });
+      $('#nextButton').click(function() {
+        if ('{{ search }}' != '') {
+          location.href = "{{ root }}/suppliers/?search={{ search }}&page={{ page + 1}}";
+        } else {
+          location.href = "{{ root }}/suppliers/?page={{ page + 1}}";
+        }
+      });
+    });
+  </script>
+
+{% endblock %}

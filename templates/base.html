@@ -39,6 +39,10 @@
         margin-left: 13px;
       }
 
+      form.top-bar div.search.no-margin-left {
+        margin-left: 0;
+      }
+
       form.top-bar div.second-button {
         margin-left: 13px;
       }
@@ -154,7 +158,15 @@
             <a class="nav-item nav-link" href="{{ root }}/products/">Products</a>
             <a class="nav-item nav-link" href="{{ root }}/customers/">Customers</a>
             <a class="nav-item nav-link" href="{{ root }}/suppliers/">Suppliers</a>
-            <a class="nav-item nav-link" href="#">Inventory</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Inventory
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ root }}/inventory/">Product inventory</a>
+                <a class="dropdown-item" href="{{ root }}/restocking-order/">Restocking order</a>
+              </div>
+            </li>
           </div>
         </div>
       </nav>
