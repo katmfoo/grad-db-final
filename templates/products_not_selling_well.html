@@ -1,23 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Restocking Order{% endblock %}
+{% block title %}Products Not Selling Well{% endblock %}
 
 {% block content %}
-
   {% if products %}
     <table class="table table-sm table-bordered">
       <tr class="header">
         <td></td>
         <td>Product</td>
-        <td>Minimum stock level</td>
-        <td>Current stock level</td>
+        <td>Last purchase date</td>
       </tr>
       {% for product in products %}
         <tr>
           <td>{{ loop.index }}</td>
           <td><a href="{{ root }}/products/?id={{ product.product_id }}&seller_id=1">{{ product.name }} ({{ product.product_code }})</a></td>
-          <td>{{ product.minimum_stock }}</td>
-          <td>{{ product.current_stock }}</td>
+          <td>
+            {% if product.last_purchase_date %}
+              {{ product.last_purchase_date }}
+            {% else %}
+              <span class="text-danger">Never purchased</span>
+            {% endif %}
+          </td>
         </tr>
       {% endfor %}
     </table>
@@ -33,10 +36,10 @@
   <script>
     $(document).ready(function($) {
       $('#previousButton').click(function() {
-        location.href = "{{ root }}/restocking-order/?page={{ page - 1}}";
+        location.href = "{{ root }}/products-not-selling-well/?page={{ page - 1}}";
       });
       $('#nextButton').click(function() {
-        location.href = "{{ root }}/restocking-order/?page={{ page + 1}}";
+        location.href = "{{ root }}/products-not-selling-well/?page={{ page + 1}}";
       });
     });
   </script>

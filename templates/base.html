@@ -155,7 +155,16 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="{{ root }}/">Home</a>
-            <a class="nav-item nav-link" href="{{ root }}/products/">Products</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Products
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ root }}/products/">Products</a>
+                <a class="dropdown-item" href="{{ root }}/product-catalog/">Product catalog</a>
+                <a class="dropdown-item" href="{{ root }}/products-not-selling-well/">Products not selling well</a>
+              </div>
+            </li>
             <a class="nav-item nav-link" href="{{ root }}/customers/">Customers</a>
             <a class="nav-item nav-link" href="{{ root }}/suppliers/">Suppliers</a>
             <a class="nav-item nav-link" href="{{ root }}/orders/">Orders</a>

@@ -40,14 +40,12 @@
   {% if supplier.products %}
     <table class="table table-sm table-bordered">
       <tr class="header">
-        <td>Code</td>
-        <td>Name</td>
+        <td>Product</td>
         <td>List price</td>
       </tr>
       {% for product in supplier.products %}
         <tr class="clickable-row" data-href='{{ root }}/products/?id={{ product.product_id }}&seller_id=1'>
-          <td>{{ product.product_code }}</td>
-          <td>{{ product.name }}</td>
+          <td>{{ product.name }} ({{ product.product_code }})</td>
           <td>${{ product.list_price|number_format(2) }}</td>
         </tr>
       {% endfor %}

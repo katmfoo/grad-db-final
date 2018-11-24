@@ -6,23 +6,8 @@
 
   <form class="form-inline top-bar" action="{{ root }}/products/" method="get">
     <button type="button" class="btn btn-success mb-2" id="addProduct">Add Product</button>
-    <div class="btn-group mb-2 second-button">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Filter Category
-      </button>
-      <div class="dropdown-menu">
-        {% if category %}
-          <a class="dropdown-item" href="{{ root }}/products/">All categories</a>
-          <div class="dropdown-divider"></div>
-        {% endif %}
-        {% for category_l in categories %}
-          <a class="dropdown-item{% if category_l == category %} active{% endif %}" href="{{ root }}/products/?category={{ category_l }}">{{ category_l }}</a>
-        {% endfor %}
-      </div>
-    </div>
     <div class="input-group mb-2 search">
       <input type="text" name="search" class="form-control" placeholder="Product name" {% if search %}value="{{ search }}"{% endif %}>
-      {% if category %}<input type="hidden" name="category" value="{{ category }}">{% endif %}
       <div class="input-group-append">
         <button class="btn btn-primary" type="submit">Search</button>
       </div>
@@ -30,31 +15,18 @@
   </form>
 
   {% if products %}
-    <div class="card-columns">
+    <table class="table table-sm table-bordered">
+      <tr class="header">
+        <td>Product</td>
+        <td>List price</td>
+      </tr>
       {% for product in products %}
-        <div class="card clickable">
-          <a class="hidden" href="{{ root }}/products/?id={{ product.product_id }}&seller_id={{ product.seller_id }}"></a>
-          <div class="card-header">{{ product.name }}</div>
-          <div class="card-body">
-            <div style="margin-top: -7px;" class="clearfix">
-              <small class="text-muted">Sold by {{ product.seller }}</small>
-              {% if product.product_code %}<small style="float: right; margin-top: 4px;" class="text-muted">{{ product.product_code }}</small>{% endif %}
-            </div>
-            <div>
-              {% if product.seller_id == 4 %}Rental rate{% else %}List price{% endif %}: ${{ product.cost|number_format(2) }}
-              {% if product.quantity_available > 0 %}
-                <small class="text-success">({{ product.quantity_available }} left)</small>
-              {% else %}
-                <small class="text-danger">(Out of stock)</small>
-              {% endif %}
-            </div>
-            {% for category in product.categories %}
-              <a href="{{ root }}/products/?category={{ category.name }}" class="badge badge-pill badge-{{ category.color }}">{{ category.name }}</a>
-            {% endfor %}
-          </div>
-        </div>
+        <tr class="clickable-row" data-href='{{ root }}/products/?id={{ product.product_id }}&seller_id=1'>
+          <td>{{ product.name }} ({{ product.product_code }})</td>
+          <td>${{ product.list_price|number_format(2) }}</td>
+        </tr>
       {% endfor %}
-    </div>
+    </table>
   {% else %}
     <p class="no-results">No products found</p>
   {% endif %}
@@ -66,16 +38,10 @@
 
   <script>
     $(document).ready(function($) {
-      $('a.badge').click(function(event) {
-        event.stopPropagation();
-      });
       $('#previousButton').click(function() {
         var link = "{{ root }}/products/?page={{ page - 1}}";
         if ('{{ search }}' != '') {
           link += "&search={{ search }}";
-        }
-        if ('{{ category }}' != '') {
-          link += "&category={{ category }}";
         }
         location.href = link;
       });
@@ -84,16 +50,10 @@
         if ('{{ search }}' != '') {
           link += "&search={{ search }}";
         }
-        if ('{{ category }}' != '') {
-          link += "&category={{ category }}";
-        }
         location.href = link;
       });
       $('#addProduct').click(function() {
         location.href = "{{ root }}/products/add/";
-      });
-      $(".card").click(function() {
-        location.href = $(this).find("a").attr("href");
       });
     });
   </script>
