@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Orders{% endblock %}
+
+{% block content %}
+
+  <form class="form-inline top-bar" action="{{ root }}/orders/" method="get">
+    <div class="input-group mb-2 search no-margin-left">
+      <input type="text" name="search" class="form-control" placeholder="Order code" {% if search %}value="{{ search }}"{% endif %}>
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </div>
+  </form>
+
+  {% if orders %}
+    <table class="table table-bordered table-sm">
+      <tr class="header">
+        <td>Order code</td>
+        <td>Total</td>
+        <td>Placed on</td>
+      </tr>
+      {% for order in orders %}
+        <tr class='clickable-row' data-href='{{ root }}/orders/?id={{ order.order_id }}'>
+          <td>{{ order.order_code }}</td>
+          <td>${{ order.order_total|number_format(2) }}</td>
+          <td>{{ order.order_datetime }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="no-results">No orders found</p>
+  {% endif %}
+  <div class="pagination-buttons">
+    <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>
+    <span>Page {{ page }}</span>
+    <button type="button" id="nextButton" class="btn btn-light btn-sm" {% if orders|length < page_size %}disabled{% endif %}>Next</button>
+  </div>
+
+  <script>
+    $(document).ready(function($) {
+      $('#previousButton').click(function() {
+        if ('{{ search }}' != '') {
+          location.href = "{{ root }}/orders/?search={{ search }}&page={{ page - 1}}";
+        } else {
+          location.href = "{{ root }}/orders/?page={{ page - 1}}";
+        }
+      });
+      $('#nextButton').click(function() {
+        if ('{{ search }}' != '') {
+          location.href = "{{ root }}/orders/?search={{ search }}&page={{ page + 1}}";
+        } else {
+          location.href = "{{ root }}/orders/?page={{ page + 1}}";
+        }
+      });
+    });
+  </script>
+
+{% endblock %}
