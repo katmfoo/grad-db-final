@@ -38,5 +38,18 @@
     {% endfor %}
   </table>
   <h5>Shipping info</h5>
-  <p>Shipping to {{ order.customer_first_name }} {{ order.customer_last_name }} at {{ order.shipping_address }}, {{ order.shipping_city }} {{ order.shipping_state }}, {{ order.shipping_zip }} {{ order.shipping_country }}</p>
+  <table class="table table-sm table-bordered">
+    <tr>
+      <td class="header">Shipping to</td>
+      <td>{{ order.customer_first_name }} {{ order.customer_last_name }}</td>
+    </tr>
+    <tr>
+      <td class="header">Shipping location</td>
+      <td>{{ order.shipping_address }}, {{ order.shipping_city }} {{ order.shipping_state }}, {{ order.shipping_zip }} {{ order.shipping_country }}</td>
+    </tr>
+    <tr>
+      <td class="header">Expected shipping date</td>
+      <td>{{ order.shipping_date }}</td>
+    </tr>
+  </table>
 {% endblock %}
