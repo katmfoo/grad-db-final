@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Customers Not Active{% endblock %}
+
+{% block content %}
+  {% if customers %}
+    <table class="table table-sm table-bordered">
+      <tr class="header">
+        <td></td>
+        <td>Name</td>
+        <td>Last order placed date</td>
+      </tr>
+      {% for customer in customers %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td><a href="{{ root }}/customers/?id={{ customer.customer_id }}&seller_id=1">{{ customer.first_name }} {{ customer.last_name }}</a></td>
+          <td>
+            {% if customer.last_order_date %}
+              {{ customer.last_order_date }}
+            {% else %}
+              <span class="text-danger">Never placed an order</span>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="no-results">No customers found</p>
+  {% endif %}
+  <div class="pagination-buttons">
+    <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>
+    <span>Page {{ page }}</span>
+    <button type="button" id="nextButton" class="btn btn-light btn-sm" {% if customers|length < page_size %}disabled{% endif %}>Next</button>
+  </div>
+
+  <script>
+    $(document).ready(function($) {
+      $('#previousButton').click(function() {
+        location.href = "{{ root }}/customers-not-active/?page={{ page - 1}}";
+      });
+      $('#nextButton').click(function() {
+        location.href = "{{ root }}/customers-not-active/?page={{ page + 1}}";
+      });
+    });
+  </script>
+
+{% endblock %}
