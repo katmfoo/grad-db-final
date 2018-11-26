@@ -103,7 +103,7 @@ CREATE TABLE `cart_item` (
 
 LOCK TABLES `cart_item` WRITE;
 /*!40000 ALTER TABLE `cart_item` DISABLE KEYS */;
-INSERT INTO `cart_item` VALUES (16144,2,952,2,2,'2018-11-19 16:34:15','2018-11-19 16:34:12'),(20075,2,2,4,1,'2018-11-19 16:40:43','2018-11-19 16:40:04');
+INSERT INTO `cart_item` VALUES (26,1,3,1,1,'2018-11-26 01:51:15','2018-11-26 01:51:15'),(16144,2,952,2,2,'2018-11-19 16:34:15','2018-11-19 16:34:12'),(20075,2,2,4,1,'2018-11-19 16:40:43','2018-11-19 16:40:04');
 /*!40000 ALTER TABLE `cart_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -407,6 +407,38 @@ INSERT INTO `supplier` VALUES (1,'sdfsdf','sdfg','sdfsad','sdf','sadf',24,1,'201
 UNLOCK TABLES;
 
 --
+-- Table structure for table `wishlist`
+--
+
+DROP TABLE IF EXISTS `wishlist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wishlist` (
+  `customer_id` int(11) NOT NULL,
+  `customer_seller_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_seller_id` int(11) NOT NULL,
+  `updated_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `creation_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`customer_id`,`customer_seller_id`,`product_id`,`product_seller_id`),
+  KEY `fk_wishlist_seller_idx` (`customer_seller_id`),
+  KEY `fk_wishlist_seller_2_idx` (`product_seller_id`),
+  CONSTRAINT `fk_wishlist_seller` FOREIGN KEY (`customer_seller_id`) REFERENCES `seller` (`seller_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_wishlist_seller_2` FOREIGN KEY (`product_seller_id`) REFERENCES `seller` (`seller_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wishlist`
+--
+
+LOCK TABLES `wishlist` WRITE;
+/*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
+INSERT INTO `wishlist` VALUES (26,1,3,1,'2018-11-26 01:57:40','2018-11-26 01:57:40');
+/*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Final view structure for view `category_view`
 --
 
@@ -487,4 +519,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-25 19:51:05
+-- Dump completed on 2018-11-25 21:10:21
