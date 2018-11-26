@@ -35,7 +35,7 @@ CREATE TABLE `address` (
   PRIMARY KEY (`address_id`),
   KEY `fk_address_address_type_idx` (`type`),
   CONSTRAINT `fk_address_address_type` FOREIGN KEY (`type`) REFERENCES `address_type` (`address_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `address` (
 
 LOCK TABLES `address` WRITE;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
-INSERT INTO `address` VALUES (1,'1116 Elk Road','Monroeville','NJ','08343','USA',1,'2018-11-15 13:33:23','2018-11-15 02:21:20'),(2,'1116 Elk Road','Monroeville','NJ','08343','USA',1,'2018-11-15 22:56:28','2018-11-15 03:21:29'),(3,'asdfsadf','sdfsd','fsdaf','sadf','asdsd',1,'2018-11-15 13:33:23','2018-11-15 03:22:45'),(4,'89 South Avenue','Philadelphia','PA','83921','USA',1,'2018-11-15 14:37:16','2018-11-15 14:37:16'),(5,'23 Corn Roads','Millwuks','OHs','23412s','USAs',1,'2018-11-15 15:19:56','2018-11-15 14:49:29'),(6,'38 Jeez Streets','Monroevilles','OHs','12912s','USAs',1,'2018-11-15 23:01:43','2018-11-15 22:23:54'),(7,'','','','','',1,'2018-11-15 22:25:04','2018-11-15 22:25:04'),(8,'','','','','',1,'2018-11-15 22:25:39','2018-11-15 22:25:39'),(9,'123 Main Street','Point Place','Wisconsin','12345','USA',1,'2018-11-15 22:57:47','2018-11-15 22:57:47'),(10,'23 Yamaha Road','Columbia','OH','12345','USA',1,'2018-11-15 23:18:50','2018-11-15 23:18:50'),(11,'12 Fairview Rd','Cleanville','KA','12312','USA',1,'2018-11-15 23:44:29','2018-11-15 23:44:29'),(12,'78 Main Street','Cooca','OH','22412','USA',1,'2018-11-16 18:04:33','2018-11-16 18:04:33'),(13,'sadf','dsf','sdaf','sdf','sfd',1,'2018-11-18 06:42:12','2018-11-18 06:42:12'),(14,'45 East Street','Monroe','CO','12345','USA',2,'2018-11-19 14:08:01','2018-11-19 14:08:01'),(17,'46 East Street','Monroe','CO','12345','USA',2,'2018-11-19 14:26:15','2018-11-19 14:26:15'),(18,'h','h','h','h','h',1,'2018-11-19 14:53:25','2018-11-19 14:53:25'),(20,'4116 Stanbridge Ct.','Downey','Californias','90241','US',2,'2018-11-19 15:06:29','2018-11-19 15:06:29'),(21,'6540 Park Glen Ct.','Kirkland','Washington','98033','US',2,'2018-11-19 16:34:27','2018-11-19 16:34:27'),(22,'6695 Black Walnut Court','Sooke','British Columbia','V0','CA',2,'2018-11-19 16:40:52','2018-11-19 16:40:52'),(23,'1116 Elk Road','Monroeville','NJ','08343','USA',2,'2018-11-19 16:44:01','2018-11-19 16:44:01'),(24,'sdaf','asdf','sdaf','sdafsad','sdaf',1,'2018-11-19 23:20:09','2018-11-19 23:20:09'),(25,'9761 Darnett Circle','Lebanon','Oregon','97355','US',2,'2018-11-19 23:29:31','2018-11-19 23:29:31');
+INSERT INTO `address` VALUES (1,'1116 Elk Road','Monroeville','NJ','08343','USA',1,'2018-11-15 13:33:23','2018-11-15 02:21:20'),(2,'1116 Elk Road','Monroeville','NJ','08343','USA',1,'2018-11-15 22:56:28','2018-11-15 03:21:29'),(3,'asdfsadf','sdfsd','fsdaf','sadf','asdsd',1,'2018-11-15 13:33:23','2018-11-15 03:22:45'),(4,'89 South Avenue','Philadelphia','PA','83921','USA',1,'2018-11-15 14:37:16','2018-11-15 14:37:16'),(5,'23 Corn Roads','Millwuks','OHs','23412s','USAs',1,'2018-11-15 15:19:56','2018-11-15 14:49:29'),(6,'38 Jeez Streets','Monroevilles','OHs','12912s','USAs',1,'2018-11-15 23:01:43','2018-11-15 22:23:54'),(7,'','','','','',1,'2018-11-15 22:25:04','2018-11-15 22:25:04'),(8,'','','','','',1,'2018-11-15 22:25:39','2018-11-15 22:25:39'),(9,'123 Main Street','Point Place','Wisconsin','12345','USA',1,'2018-11-15 22:57:47','2018-11-15 22:57:47'),(10,'23 Yamaha Road','Columbia','OH','12345','USA',1,'2018-11-15 23:18:50','2018-11-15 23:18:50'),(11,'12 Fairview Rd','Cleanville','KA','12312','USA',1,'2018-11-15 23:44:29','2018-11-15 23:44:29'),(12,'78 Main Street','Cooca','OH','22412','USA',1,'2018-11-16 18:04:33','2018-11-16 18:04:33'),(13,'sadf','dsf','sdaf','sdf','sfd',1,'2018-11-18 06:42:12','2018-11-18 06:42:12'),(14,'45 East Street','Monroe','CO','12345','USA',2,'2018-11-19 14:08:01','2018-11-19 14:08:01'),(17,'46 East Street','Monroe','CO','12345','USA',2,'2018-11-19 14:26:15','2018-11-19 14:26:15'),(18,'h','h','h','h','h',1,'2018-11-19 14:53:25','2018-11-19 14:53:25'),(20,'4116 Stanbridge Ct.','Downey','Californias','90241','US',2,'2018-11-19 15:06:29','2018-11-19 15:06:29'),(21,'6540 Park Glen Ct.','Kirkland','Washington','98033','US',2,'2018-11-19 16:34:27','2018-11-19 16:34:27'),(22,'6695 Black Walnut Court','Sooke','British Columbia','V0','CA',2,'2018-11-19 16:40:52','2018-11-19 16:40:52'),(23,'1116 Elk Road','Monroeville','NJ','08343','USA',2,'2018-11-19 16:44:01','2018-11-19 16:44:01'),(24,'sdaf','asdf','sdaf','sdafsad','sdaf',1,'2018-11-19 23:20:09','2018-11-19 23:20:09'),(25,'9761 Darnett Circle','Lebanon','Oregon','97355','US',2,'2018-11-19 23:29:31','2018-11-19 23:29:31'),(26,'asdf','asdf','sadf','sadf','asdf',3,'2018-11-20 23:29:16','2018-11-20 23:29:16');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,7 +172,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (21,'Patrick','Richeal',2,0,'2018-11-15 22:56:28','2018-11-15 03:21:29'),(26,'Steven','Bob',9,1,'2018-11-20 01:03:03','2018-11-15 22:57:47');
+INSERT INTO `customer` VALUES (21,'Patrick','Richeal',2,0,'2018-11-20 01:30:27','2018-11-15 03:21:29'),(26,'Steven','Bob',9,0,'2018-11-26 00:37:58','2018-11-15 22:57:47');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +218,7 @@ CREATE TABLE `order` (
   KEY `fk_order_address_idx` (`shipping_address_id`),
   CONSTRAINT `fk_order_address` FOREIGN KEY (`shipping_address_id`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_seller_id` FOREIGN KEY (`customer_seller_id`) REFERENCES `seller` (`seller_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +227,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (7,'CF54AEA2DE',21,1,23,'2018-11-19 16:50:35','2018-11-19 16:50:35'),(8,'F20C61EA1B',21,1,23,'2018-11-19 16:52:04','2018-11-19 16:52:04'),(9,'FD418165D2',21,1,23,'2018-11-19 17:30:32','2018-11-19 17:30:32'),(10,'2215A7087C',21,1,23,'2018-11-19 17:34:20','2018-11-19 17:34:20'),(11,'0015308D6F',21414,2,25,'2018-11-19 23:29:31','2018-11-19 23:29:31'),(16,'8E7D76E19D',21414,2,25,'2018-11-20 00:16:47','2018-11-20 00:16:47'),(18,'97B82825C6',21414,2,25,'2018-11-20 00:20:00','2018-11-20 00:20:00'),(20,'9921AA9DD8',21414,2,25,'2018-11-20 00:23:36','2018-11-20 00:23:36'),(21,'0929DECCB9',21414,2,25,'2018-11-20 00:51:18','2018-11-20 00:51:18');
+INSERT INTO `order` VALUES (7,'CF54AEA2DE',21,1,23,'2018-11-26 00:39:03','2018-11-19 16:50:35'),(8,'F20C61EA1B',21,1,23,'2018-11-26 00:39:03','2018-11-19 16:52:04'),(9,'FD418165D2',21,1,23,'2018-11-26 00:39:03','2018-11-19 17:30:32'),(10,'2215A7087C',21,1,23,'2018-11-26 00:39:03','2018-11-19 17:34:20'),(11,'0015308D6F',21414,2,25,'2018-11-19 23:29:31','2018-11-19 23:29:31'),(16,'8E7D76E19D',21414,2,25,'2018-11-20 00:16:47','2018-11-20 00:16:47'),(18,'97B82825C6',21414,2,25,'2018-11-20 00:20:00','2018-11-20 00:20:00'),(20,'9921AA9DD8',21414,2,25,'2018-11-20 00:23:36','2018-11-20 00:23:36'),(21,'0929DECCB9',21414,2,25,'2018-11-20 00:51:18','2018-11-20 00:51:18'),(22,'748A9E6A83',21,1,23,'2018-11-26 00:39:03','2018-11-20 01:43:44');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,7 +259,7 @@ CREATE TABLE `order_product` (
 
 LOCK TABLES `order_product` WRITE;
 /*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
-INSERT INTO `order_product` VALUES (7,5,4,2,5.98,'2018-11-19 16:50:35','2018-11-19 16:50:35'),(9,6,4,3,8.97,'2018-11-19 17:30:32','2018-11-19 17:30:32'),(10,952,2,2,40.48,'2018-11-19 17:34:20','2018-11-19 17:34:20'),(11,1,1,2,139.78,'2018-11-20 00:48:22','2018-11-19 23:29:31'),(11,6,4,6,17.94,'2018-11-19 23:29:31','2018-11-19 23:29:31'),(16,1,1,12,1677.36,'2018-11-20 00:16:47','2018-11-20 00:16:47'),(18,1,1,7,978.46,'2018-11-20 00:20:00','2018-11-20 00:20:00'),(20,1,1,7,978.46,'2018-11-20 00:23:36','2018-11-20 00:23:36'),(21,1,1,4,559.12,'2018-11-20 00:51:18','2018-11-20 00:51:18');
+INSERT INTO `order_product` VALUES (7,5,4,2,5.98,'2018-11-19 16:50:35','2018-11-19 16:50:35'),(9,6,4,3,8.97,'2018-11-19 17:30:32','2018-11-19 17:30:32'),(10,952,2,2,40.48,'2018-11-19 17:34:20','2018-11-19 17:34:20'),(11,1,1,2,139.78,'2018-11-24 18:05:15','2018-11-19 23:29:31'),(11,6,4,6,17.94,'2018-11-19 23:29:31','2018-11-19 23:29:31'),(16,1,1,12,1677.36,'2018-11-24 18:05:15','2018-11-20 00:16:47'),(18,1,1,7,978.46,'2018-11-24 18:05:15','2018-11-20 00:20:00'),(20,1,1,7,978.46,'2018-11-24 18:05:15','2018-11-20 00:23:36'),(21,1,1,4,559.12,'2018-11-24 18:05:15','2018-11-20 00:51:18'),(22,1,4,2,1.98,'2018-11-20 01:43:44','2018-11-20 01:43:44');
 /*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,7 +284,9 @@ SET character_set_client = utf8;
  1 AS `shipping_state`,
  1 AS `shipping_zip`,
  1 AS `shipping_country`,
- 1 AS `order_datetime`*/;
+ 1 AS `order_datetime`,
+ 1 AS `shipping_date`,
+ 1 AS `creation_datetime`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -312,7 +314,7 @@ CREATE TABLE `product` (
   KEY `fk_product_category_idx` (`category_id`),
   CONSTRAINT `fk_product_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_product_supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -321,7 +323,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'D3A4E7361C','Laptop',139.78,1,10,90,1,0,'2018-11-20 01:16:06','2018-11-19 23:24:58');
+INSERT INTO `product` VALUES (1,'D3A4E7361C','Laptop',139.78,2,10,8,1,0,'2018-11-20 23:29:47','2018-11-19 23:24:58'),(2,'2A1DDAA6E7','Cornflakes',1.34,1,20,17,1,0,'2018-11-20 23:42:30','2018-11-20 23:41:59'),(3,'55F3A64E22','Apples',10.00,2,10,30,NULL,0,'2018-11-24 17:55:13','2018-11-24 17:55:13'),(4,'76E139B388','Orange',3.00,2,3,13,NULL,0,'2018-11-24 18:30:25','2018-11-24 18:30:25');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,7 +393,7 @@ CREATE TABLE `supplier` (
   PRIMARY KEY (`supplier_id`),
   KEY `fk_supplier_address_idx` (`address_id`),
   CONSTRAINT `fk_supplier_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -400,7 +402,7 @@ CREATE TABLE `supplier` (
 
 LOCK TABLES `supplier` WRITE;
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
-INSERT INTO `supplier` VALUES (1,'sdfsdf','sdfg','sdfsad','sdf','sadf',24,1,'2018-11-20 01:13:27','2018-11-19 23:20:09');
+INSERT INTO `supplier` VALUES (1,'sdfsdf','sdfg','sdfsad','sdf','sadf',24,1,'2018-11-20 01:33:35','2018-11-19 23:20:09'),(2,'sdafsa','asdf','sadf','asdf','asdf',26,0,'2018-11-20 23:29:16','2018-11-20 23:29:16');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -453,7 +455,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `order_view` AS select `richealp7`.`order`.`order_id` AS `order_id`,`richealp7`.`order`.`order_code` AS `order_code`,(select sum(`richealp7`.`order_product`.`cost`) from `richealp7`.`order_product` where (`richealp7`.`order_product`.`order_id` = `richealp7`.`order`.`order_id`)) AS `order_total`,`richealp7`.`order`.`customer_id` AS `customer_id`,`richealp7`.`order`.`customer_seller_id` AS `customer_seller_id`,`customer_view`.`first_name` AS `customer_first_name`,`customer_view`.`last_name` AS `customer_last_name`,`richealp7`.`address`.`address` AS `shipping_address`,`richealp7`.`address`.`city` AS `shipping_city`,`richealp7`.`address`.`state` AS `shipping_state`,`richealp7`.`address`.`zip` AS `shipping_zip`,`richealp7`.`address`.`country` AS `shipping_country`,date_format(`richealp7`.`order`.`creation_datetime`,'%b %D, %Y at %l:%i%p') AS `order_datetime` from ((`richealp7`.`order` join `richealp7`.`address` on((`richealp7`.`order`.`shipping_address_id` = `richealp7`.`address`.`address_id`))) join `richealp7`.`customer_view` on(((`richealp7`.`order`.`customer_id` = `customer_view`.`customer_id`) and (`richealp7`.`order`.`customer_seller_id` = `customer_view`.`seller_id`)))) */;
+/*!50001 VIEW `order_view` AS select `richealp7`.`order`.`order_id` AS `order_id`,`richealp7`.`order`.`order_code` AS `order_code`,(select sum(`richealp7`.`order_product`.`cost`) from `richealp7`.`order_product` where (`richealp7`.`order_product`.`order_id` = `richealp7`.`order`.`order_id`)) AS `order_total`,`richealp7`.`order`.`customer_id` AS `customer_id`,`richealp7`.`order`.`customer_seller_id` AS `customer_seller_id`,`customer_view`.`first_name` AS `customer_first_name`,`customer_view`.`last_name` AS `customer_last_name`,`richealp7`.`address`.`address` AS `shipping_address`,`richealp7`.`address`.`city` AS `shipping_city`,`richealp7`.`address`.`state` AS `shipping_state`,`richealp7`.`address`.`zip` AS `shipping_zip`,`richealp7`.`address`.`country` AS `shipping_country`,date_format(`richealp7`.`order`.`creation_datetime`,'%W, %b %D, %Y at %l:%i%p') AS `order_datetime`,date_format((select (`richealp7`.`order`.`creation_datetime` + interval (4 + if(((week(`richealp7`.`order`.`creation_datetime`,0) <> week((`richealp7`.`order`.`creation_datetime` + interval 4 day),0)) or (weekday((`richealp7`.`order`.`creation_datetime` + interval 4 day)) in (5,6))),2,0)) day)),'%W, %b %D, %Y') AS `shipping_date`,`richealp7`.`order`.`creation_datetime` AS `creation_datetime` from ((`richealp7`.`order` join `richealp7`.`address` on((`richealp7`.`order`.`shipping_address_id` = `richealp7`.`address`.`address_id`))) join `richealp7`.`customer_view` on(((`richealp7`.`order`.`customer_id` = `customer_view`.`customer_id`) and (`richealp7`.`order`.`customer_seller_id` = `customer_view`.`seller_id`)))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -485,4 +487,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-19 20:18:02
+-- Dump completed on 2018-11-25 19:51:05
