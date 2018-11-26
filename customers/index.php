@@ -21,7 +21,18 @@ if (isset($_GET['id'])) {
         }
     }
 
-    echo $twig->render('customer.html', array('customer' => $customer, 'orders' => $orders));
+    $sql = "SELECT * FROM wishlist JOIN product_view ON wishlist.product_id = product_view.product_id AND wishlist.product_seller_id = product_view.seller_id WHERE customer_id = ".$customer_id." AND customer_seller_id = ".$seller_id;
+
+    $result = mysqli_query($conn, $sql);
+    $wishlist = array();
+
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($wishlist, $row);
+        }
+    }
+
+    echo $twig->render('customer.html', array('customer' => $customer, 'orders' => $orders, 'wishlist' => $wishlist));
 } else {
     if (isset($_GET['page'])) {
         $page = htmlspecialchars($_GET['page']);

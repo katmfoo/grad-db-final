@@ -49,6 +49,28 @@
     <p class="no-results">This customer has not placed any orders</p>
   {% endif %}
 
+  <h5>Wishlist</h5>
+  {% if wishlist %}
+    <table class="table table-sm table-bordered">
+      <tr class="header">
+        <td>Product</td>
+        <td>List price</td>
+        <td>Actions</td>
+      </tr>
+      {% for product in wishlist %}
+        <tr>
+          <td><a href="{{ root }}/products/?id={{ product.product_id }}&seller_id=1">{{ product.name }} {% if product.product_code %}({{ product.product_code }}){% endif %}</a></td>
+          <td>${{ product.cost|number_format(2) }}</td>
+          <td>
+            <a id="removeButton{{ product.product_id }}_{{product.product_seller_id }}" href="#">Remove from wishlist</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="no-results">No items on wishlist</p>
+  {% endif %}
+
   <script>
     $(document).ready(function($) {
       $('#editCustomer').click(function() {
@@ -63,6 +85,12 @@
       $('#setCurrentCustomer').click(function() {
         location.href = "{{ root }}/scripts/set_current_customer.php?customer_id={{ customer.customer_id }}&seller_id={{ customer.seller_id }}";
       });
+
+      {% for product in wishlist %}
+        $('#removeButton{{ product.product_id }}_{{product.product_seller_id }}').click(function() {
+          location.href = "{{ root }}/scripts/remove_wishlist_item.php?customer_id={{ product.customer_id }}&customer_seller_id={{ product.customer_seller_id }}&product_id={{ product.product_id }}&product_seller_id={{ product.product_seller_id }}";
+        });
+      {% endfor %}
     });
   </script>
 {% endblock %}

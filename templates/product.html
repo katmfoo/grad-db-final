@@ -6,6 +6,7 @@
   <div class="top-button-bar">
     {% if current_customer %}
       <button type="button" class="btn btn-secondary mb-2" id="addToCart">Add to Cart</button>
+      <button type="button" class="btn btn-secondary mb-2" id="addToWishlist">Add to Wishlist</button>
     {% endif %}
     {% if product.seller_id == 1 %}
       <button type="button" class="btn btn-primary mb-2" id="editProduct">Edit Product</button>
@@ -67,6 +68,9 @@
       });
       $('#addToCart').click(function() {
         location.href = "{{ root }}/scripts/add_to_cart.php?product_id={{ product.product_id }}&seller_id={{ product.seller_id }}";
+      });
+      $('#addToWishlist').click(function() {
+        location.href = "{{ root }}/scripts/add_to_wishlist.php?product_id={{ product.product_id }}&seller_id={{ product.seller_id }}";
       });
     });
   </script>
