@@ -7,12 +7,17 @@
     {% if current_customer %}
       <button type="button" class="btn btn-secondary mb-2" id="addToCart">Add to Cart</button>
       <button type="button" class="btn btn-secondary mb-2" id="addToWishlist">Add to Wishlist</button>
+      <button type="button" class="btn btn-secondary mb-2" id="rateProduct">Rate Product</button>
     {% endif %}
     {% if product.seller_id == 1 %}
       <button type="button" class="btn btn-primary mb-2" id="editProduct">Edit Product</button>
       <button type="button" class="btn btn-danger mb-2" id="deleteProduct">Delete Product</button>
     {% endif %}
   </div>
+
+  {% if current_customer_rating %}
+    <p>You rated this product {{ current_customer_rating }} stars</p>
+  {% endif %}
 
   <h5>Product info</h5>
   <table class="table table-sm table-bordered">
@@ -53,6 +58,26 @@
         </td>
       </tr>
     {% endif %}
+    <tr>
+      <td class="header">Rating</td>
+      <td>
+        {% if product.rating %}
+          <span class="fa fa-star text-warning"></span>
+          <span class="fa fa-star{% if product.rating >= 1.5 and product.rating < 2 %}-half-o{% elseif product.rating <= 1 %}-o{% endif %} text-warning"></span>
+          <span class="fa fa-star{% if product.rating >= 2.5 and product.rating < 3 %}-half-o{% elseif product.rating <= 2 %}-o{% endif %} text-warning"></span>
+          <span class="fa fa-star{% if product.rating >= 3.5 and product.rating < 4 %}-half-o{% elseif product.rating <= 3 %}-o{% endif %} text-warning"></span>
+          <span class="fa fa-star{% if product.rating >= 4.5 and product.rating < 5 %}-half-o{% elseif product.rating <= 4 %}-o{% endif %} text-warning"></span>
+          <span class="fa fa-star{% if product.rating >= 5.5 and product.rating < 6 %}-half-o{% elseif product.rating <= 5 %}-o{% endif %} text-warning"></span>
+          <span class="fa fa-star{% if product.rating >= 6.5 and product.rating < 7 %}-half-o{% elseif product.rating <= 6 %}-o{% endif %} text-warning"></span>
+          <span class="fa fa-star{% if product.rating >= 7.5 and product.rating < 8 %}-half-o{% elseif product.rating <= 7 %}-o{% endif %} text-warning"></span>
+          <span class="fa fa-star{% if product.rating >= 8.5 and product.rating < 9 %}-half-o{% elseif product.rating <= 8 %}-o{% endif %} text-warning"></span>
+          <span class="fa fa-star{% if product.rating >= 9.5 and product.rating < 10 %}-half-o{% elseif product.rating <= 9 %}-o{% endif %} text-warning"></span>
+          ({{ product.rating}} stars, {{ product.num_ratings }} ratings)
+        {% else %}
+          0 ratings
+        {% endif %}
+      </td>
+    </tr>
   </table>
 
   <script>
@@ -71,6 +96,12 @@
       });
       $('#addToWishlist').click(function() {
         location.href = "{{ root }}/scripts/add_to_wishlist.php?product_id={{ product.product_id }}&seller_id={{ product.seller_id }}";
+      });
+      $('#rateProduct').click(function() {
+        var response = prompt("Rating (1-10)");
+        if (response) {
+          location.href = "{{ root }}/scripts/rate_product.php?rating=" + response + "&product_id={{ product.product_id }}&seller_id={{ product.seller_id }}";
+        }
       });
     });
   </script>

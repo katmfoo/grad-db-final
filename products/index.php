@@ -19,7 +19,14 @@ if (isset($_GET['id'])) {
         array_push($product['categories'], array('name' => $category_name, 'color' => $_CATEGORY_COLORS[$color_num]));
     }
 
-    echo $twig->render('product.html', array('product' => $product));
+    $current_customer_rating = null;
+    if (isset($_SESSION['current_customer_id']) && isset($_SESSION['current_customer_seller_id'])) {
+        $sql = "SELECT rating FROM product_rating WHERE customer_id = ".$_SESSION['current_customer_id']." AND customer_seller_id = ".$_SESSION['current_customer_seller_id']." AND product_id = ".$product_id." AND product_seller_id = ".$seller_id;
+        $result = mysqli_query($conn, $sql);
+        $current_customer_rating = mysqli_fetch_assoc($result)['rating'];
+    }
+
+    echo $twig->render('product.html', array('product' => $product, 'current_customer_rating' => $current_customer_rating));
 } else {
     if (isset($_GET['page'])) {
         $page = htmlspecialchars($_GET['page']);
