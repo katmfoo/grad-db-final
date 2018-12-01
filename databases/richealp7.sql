@@ -103,7 +103,7 @@ CREATE TABLE `cart_item` (
 
 LOCK TABLES `cart_item` WRITE;
 /*!40000 ALTER TABLE `cart_item` DISABLE KEYS */;
-INSERT INTO `cart_item` VALUES (26,1,3,1,1,'2018-11-26 01:51:15','2018-11-26 01:51:15'),(16144,2,952,2,2,'2018-11-19 16:34:15','2018-11-19 16:34:12'),(20075,2,2,4,1,'2018-11-19 16:40:43','2018-11-19 16:40:04');
+INSERT INTO `cart_item` VALUES (26,1,3,1,2,'2018-11-30 18:00:59','2018-11-26 01:51:15'),(16144,2,952,2,2,'2018-11-19 16:34:15','2018-11-19 16:34:12'),(20075,2,2,4,1,'2018-11-19 16:40:43','2018-11-19 16:40:04');
 /*!40000 ALTER TABLE `cart_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,6 +328,39 @@ INSERT INTO `product` VALUES (1,'D3A4E7361C','Laptop',139.78,2,10,8,1,0,'2018-11
 UNLOCK TABLES;
 
 --
+-- Table structure for table `product_rating`
+--
+
+DROP TABLE IF EXISTS `product_rating`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_rating` (
+  `customer_id` int(11) NOT NULL,
+  `customer_seller_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_seller_id` int(11) NOT NULL,
+  `rating` tinyint(1) NOT NULL,
+  `updated_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `creation_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`customer_id`,`customer_seller_id`,`product_id`,`product_seller_id`),
+  KEY `fk_product_rating_seller_idx` (`customer_seller_id`),
+  KEY `fk_product_rating_seller_2_idx` (`product_seller_id`),
+  CONSTRAINT `fk_product_rating_seller` FOREIGN KEY (`customer_seller_id`) REFERENCES `seller` (`seller_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_product_rating_seller_2` FOREIGN KEY (`product_seller_id`) REFERENCES `seller` (`seller_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_rating`
+--
+
+LOCK TABLES `product_rating` WRITE;
+/*!40000 ALTER TABLE `product_rating` DISABLE KEYS */;
+INSERT INTO `product_rating` VALUES (26,1,3,1,9,'2018-12-01 03:52:17','2018-12-01 03:43:55'),(28866,2,3,1,8,'2018-12-01 03:53:05','2018-12-01 03:53:05');
+/*!40000 ALTER TABLE `product_rating` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Temporary table structure for view `product_view`
 --
 
@@ -343,7 +376,9 @@ SET character_set_client = utf8;
  1 AS `quantity_available`,
  1 AS `seller_id`,
  1 AS `seller`,
- 1 AS `categories`*/;
+ 1 AS `categories`,
+ 1 AS `rating`,
+ 1 AS `num_ratings`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -434,7 +469,7 @@ CREATE TABLE `wishlist` (
 
 LOCK TABLES `wishlist` WRITE;
 /*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
-INSERT INTO `wishlist` VALUES (26,1,3,1,'2018-11-26 01:57:40','2018-11-26 01:57:40');
+INSERT INTO `wishlist` VALUES (26,1,3,1,'2018-11-26 01:57:40','2018-11-26 01:57:40'),(26,1,879,2,'2018-11-30 18:02:42','2018-11-30 18:02:42');
 /*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -505,7 +540,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `product_view` AS select `richealp7`.`product`.`product_id` AS `product_id`,`richealp7`.`product`.`product_code` AS `product_code`,`richealp7`.`product`.`name` AS `name`,`richealp7`.`product`.`list_price` AS `cost`,`richealp7`.`product`.`current_stock` AS `quantity_available`,1 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 1)) AS `seller`,concat('"',`richealp7`.`category`.`name`,'"') AS `categories` from (`richealp7`.`product` left join `richealp7`.`category` on((`richealp7`.`product`.`category_id` = `richealp7`.`category`.`category_id`))) where (`richealp7`.`product`.`is_deleted` = 0) union select `adventureworks`.`product`.`ProductID` AS `product_id`,`adventureworks`.`product`.`ProductNumber` AS `product_code`,`adventureworks`.`product`.`Name` AS `name`,`adventureworks`.`product`.`ListPrice` AS `cost`,(select coalesce(sum(`adventureworks`.`productinventory`.`Quantity`),0) from `adventureworks`.`productinventory` where (`adventureworks`.`productinventory`.`ProductID` = `adventureworks`.`product`.`ProductID`)) AS `quantity_available`,2 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 2)) AS `seller`,concat('"',`adventureworks`.`productcategory`.`Name`,'", "',`adventureworks`.`productsubcategory`.`Name`,'"') AS `categories` from ((`adventureworks`.`product` left join `adventureworks`.`productsubcategory` on((`adventureworks`.`product`.`ProductSubcategoryID` = `adventureworks`.`productsubcategory`.`ProductSubcategoryID`))) left join `adventureworks`.`productcategory` on((`adventureworks`.`productsubcategory`.`ProductCategoryID` = `adventureworks`.`productcategory`.`ProductCategoryID`))) where ((`adventureworks`.`product`.`SellStartDate` <= now()) and (`adventureworks`.`product`.`ListPrice` <> 0) and (isnull(`adventureworks`.`product`.`SellEndDate`) or (`adventureworks`.`product`.`SellEndDate` >= now())) and (isnull(`adventureworks`.`product`.`DiscontinuedDate`) or ((`adventureworks`.`product`.`DiscontinuedDate` is not null) and (`adventureworks`.`product`.`DiscontinuedDate` >= now())))) union select `northwind`.`products`.`id` AS `product_id`,`northwind`.`products`.`product_code` AS `product_code`,`northwind`.`products`.`product_name` AS `name`,`northwind`.`products`.`list_price` AS `cost`,(select coalesce(sum((`northwind`.`inventory_transactions`.`quantity` * if((`northwind`.`inventory_transactions`.`transaction_type` = 1),1,-(1)))),0) from `northwind`.`inventory_transactions` where (`northwind`.`inventory_transactions`.`product_id` = `northwind`.`products`.`id`)) AS `quantity_available`,3 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 3)) AS `seller`,concat('"Food", "',`northwind`.`products`.`category`,'"') AS `categories` from `northwind`.`products` where (`northwind`.`products`.`discontinued` = 0) union select `sakila`.`film`.`film_id` AS `product_id`,NULL AS `product_code`,`sakila`.`film`.`title` AS `name`,`sakila`.`film`.`rental_rate` AS `cost`,(select count(0) from `sakila`.`inventory` where (`sakila`.`inventory`.`film_id` = `sakila`.`film`.`film_id`)) AS `quantity_available`,4 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 4)) AS `seller`,'"Movies"' AS `categories` from `sakila`.`film` */;
+/*!50001 VIEW `product_view` AS select `richealp7`.`product`.`product_id` AS `product_id`,`richealp7`.`product`.`product_code` AS `product_code`,`richealp7`.`product`.`name` AS `name`,`richealp7`.`product`.`list_price` AS `cost`,`richealp7`.`product`.`current_stock` AS `quantity_available`,1 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 1)) AS `seller`,concat('"',`richealp7`.`category`.`name`,'"') AS `categories`,`GET_PRODUCT_RATING`(`richealp7`.`product`.`product_id`,1) AS `rating`,`get_product_num_ratings`(`richealp7`.`product`.`product_id`,1) AS `num_ratings` from (`richealp7`.`product` left join `richealp7`.`category` on((`richealp7`.`product`.`category_id` = `richealp7`.`category`.`category_id`))) where (`richealp7`.`product`.`is_deleted` = 0) union select `adventureworks`.`product`.`ProductID` AS `product_id`,`adventureworks`.`product`.`ProductNumber` AS `product_code`,`adventureworks`.`product`.`Name` AS `name`,`adventureworks`.`product`.`ListPrice` AS `cost`,(select coalesce(sum(`adventureworks`.`productinventory`.`Quantity`),0) from `adventureworks`.`productinventory` where (`adventureworks`.`productinventory`.`ProductID` = `adventureworks`.`product`.`ProductID`)) AS `quantity_available`,2 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 2)) AS `seller`,concat('"',`adventureworks`.`productcategory`.`Name`,'", "',`adventureworks`.`productsubcategory`.`Name`,'"') AS `categories`,`GET_PRODUCT_RATING`(`adventureworks`.`product`.`ProductID`,2) AS `rating`,`get_product_num_ratings`(`adventureworks`.`product`.`ProductID`,2) AS `num_ratings` from ((`adventureworks`.`product` left join `adventureworks`.`productsubcategory` on((`adventureworks`.`product`.`ProductSubcategoryID` = `adventureworks`.`productsubcategory`.`ProductSubcategoryID`))) left join `adventureworks`.`productcategory` on((`adventureworks`.`productsubcategory`.`ProductCategoryID` = `adventureworks`.`productcategory`.`ProductCategoryID`))) where ((`adventureworks`.`product`.`SellStartDate` <= now()) and (`adventureworks`.`product`.`ListPrice` <> 0) and (isnull(`adventureworks`.`product`.`SellEndDate`) or (`adventureworks`.`product`.`SellEndDate` >= now())) and (isnull(`adventureworks`.`product`.`DiscontinuedDate`) or ((`adventureworks`.`product`.`DiscontinuedDate` is not null) and (`adventureworks`.`product`.`DiscontinuedDate` >= now())))) union select `northwind`.`products`.`id` AS `product_id`,`northwind`.`products`.`product_code` AS `product_code`,`northwind`.`products`.`product_name` AS `name`,`northwind`.`products`.`list_price` AS `cost`,(select coalesce(sum((`northwind`.`inventory_transactions`.`quantity` * if((`northwind`.`inventory_transactions`.`transaction_type` = 1),1,-(1)))),0) from `northwind`.`inventory_transactions` where (`northwind`.`inventory_transactions`.`product_id` = `northwind`.`products`.`id`)) AS `quantity_available`,3 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 3)) AS `seller`,concat('"Food", "',`northwind`.`products`.`category`,'"') AS `categories`,`GET_PRODUCT_RATING`(`northwind`.`products`.`id`,3) AS `rating`,`get_product_num_ratings`(`northwind`.`products`.`id`,3) AS `num_ratings` from `northwind`.`products` where (`northwind`.`products`.`discontinued` = 0) union select `sakila`.`film`.`film_id` AS `product_id`,NULL AS `product_code`,`sakila`.`film`.`title` AS `name`,`sakila`.`film`.`rental_rate` AS `cost`,(select count(0) from `sakila`.`inventory` where (`sakila`.`inventory`.`film_id` = `sakila`.`film`.`film_id`)) AS `quantity_available`,4 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 4)) AS `seller`,'"Movies"' AS `categories`,`GET_PRODUCT_RATING`(`sakila`.`film`.`film_id`,4) AS `rating`,`get_product_num_ratings`(`sakila`.`film`.`film_id`,4) AS `num_ratings` from `sakila`.`film` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -519,4 +554,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-25 21:10:21
+-- Dump completed on 2018-11-30 22:55:16
