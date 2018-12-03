@@ -48,13 +48,11 @@
           <span class="text-danger">Out of stock</span>
         {% endif %}</td>
     </tr>
-    {% if product.categories %}
+    {% if product.category %}
       <tr>
-        <td class="header">Categories</td>
+        <td class="header">Category</td>
         <td>
-          {% for category in product.categories %}
-            <span class="badge badge-pill badge-{{ category.color }}">{{ category.name }}</span>
-          {% endfor %}
+          <span class="badge badge-pill badge-{{ product.category_color }}">{{ product.category }}</span>
         </td>
       </tr>
     {% endif %}

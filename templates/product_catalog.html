@@ -47,9 +47,9 @@
                 <small class="text-danger">(Out of stock)</small>
               {% endif %}
             </div>
-            {% for category in product.categories %}
-              <a href="{{ root }}/product-catalog/?category={{ category.name }}" class="badge badge-pill badge-{{ category.color }}">{{ category.name }}</a>
-            {% endfor %}
+            {% if product.category %}
+              <a href="{{ root }}/product-catalog/?category={{ product.category }}" class="badge badge-pill badge-{{ product.category_color }}">{{ product.category }}</a>
+            {% endif %}
           </div>
         </div>
       {% endfor %}

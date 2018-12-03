@@ -24,7 +24,7 @@ if ((isset($search) && $search) OR (isset($category) && $category)) { $sql = $sq
 
 if (isset($search) && $search) { $sql = $sql." name LIKE '%".$search."%'"; }
 if ((isset($search) && $search) && (isset($category) && $category)) { $sql = $sql." AND"; }
-if (isset($category) && $category) { $sql = $sql." categories LIKE '%".$category."%'"; }
+if (isset($category) && $category) { $sql = $sql." category LIKE '%".$category."%'"; }
 
 $sql = $sql." ORDER BY name ASC LIMIT ".$_ITEMS_PER_PAGE." OFFSET ".$offset;
 
@@ -40,13 +40,7 @@ if ($result) {
 }
 
 foreach ($products as &$product) {
-    $categories = json_decode("[".$product['categories']."]");
-    $product['categories'] = array();
-
-    foreach ($categories as $category_name) {
-        $color_num = (int)substr((string)crc32($category_name), 0, 1) % count($_CATEGORY_COLORS);
-        array_push($product['categories'], array('name' => $category_name, 'color' => $_CATEGORY_COLORS[$color_num]));
-    }
+    $product['category_color'] = $_CATEGORY_COLORS[(int)substr((string)crc32($product['category']), 0, 1) % count($_CATEGORY_COLORS)];
 }
 
 $sql = "SELECT * FROM category_view";

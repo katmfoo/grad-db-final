@@ -11,13 +11,7 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($conn, $sql);
     $product = mysqli_fetch_assoc($result);
 
-    $categories = json_decode("[".$product['categories']."]");
-    $product['categories'] = array();
-
-    foreach ($categories as $category_name) {
-        $color_num = (int)substr((string)crc32($category_name), 0, 1) % count($_CATEGORY_COLORS);
-        array_push($product['categories'], array('name' => $category_name, 'color' => $_CATEGORY_COLORS[$color_num]));
-    }
+    $product['category_color'] = $_CATEGORY_COLORS[(int)substr((string)crc32($product['category']), 0, 1) % count($_CATEGORY_COLORS)];
 
     $current_customer_rating = null;
     if (isset($_SESSION['current_customer_id']) && isset($_SESSION['current_customer_seller_id'])) {
