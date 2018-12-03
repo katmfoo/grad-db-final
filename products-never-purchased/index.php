@@ -10,31 +10,28 @@ if (isset($_GET['page'])) {
 
 $offset = $_ITEMS_PER_PAGE * ($page - 1);
 
-if (isset($_GET['search'])) {
-    $search = htmlspecialchars($_GET['search']);
-}
+/* Selects all wishlist items where the customer of that wishlist item has not created an order with the
+   product of that wishlist item */
 
-/* Selects all products that either have not been purchased at all (appears on the top of the list) or
-   products that haven't been purchased in over a month, with products having not been purchased for longer
-   appearing first */
-
-$sql = "SELECT *, (
-	        SELECT creation_datetime FROM order_product WHERE product_id = product.product_id AND product_seller_id = 1 ORDER BY creation_datetime DESC LIMIT 1
-        ) as last_purchased_date FROM richealp7.product WHERE is_deleted = 0 ";
-if (isset($search) && $search) { $sql = $sql."AND name LIKE '%".$search."%' "; }
-$sql = $sql."HAVING last_purchased_date < DATE_SUB(NOW(), INTERVAL 1 MONTH) OR last_purchased_date IS NULL ORDER BY last_purchased_date ASC, creation_datetime ASC LIMIT ".$_ITEMS_PER_PAGE." OFFSET ".$offset;
+$sql = "SELECT wishlist.customer_id, wishlist.customer_seller_id, wishlist.product_id, wishlist.product_seller_id, product_code, product_view.name AS product_name, first_name, last_name
+            FROM wishlist
+            JOIN product_view ON wishlist.product_id = product_view.product_id AND wishlist.product_seller_id = product_view.seller_id
+            JOIN customer_view ON wishlist.customer_id = customer_view.customer_id AND wishlist.customer_seller_id = customer_view.seller_id
+            WHERE (wishlist.product_id, wishlist.product_seller_id) NOT IN (
+                SELECT product_id, product_seller_id
+                    FROM order_product
+                    JOIN richealp7.order ON order_product.order_id = richealp7.order.order_id
+                    WHERE customer_id = wishlist.customer_id AND customer_seller_id = wishlist.customer_seller_id
+            ) LIMIT $_ITEMS_PER_PAGE OFFSET $offset";
 $result = mysqli_query($conn, $sql);
-$products = array();
+$wishlist_items = array();
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        array_push($products, $row);
+        array_push($wishlist_items, $row);
     }
 }
 
-$vars = array('products' => $products, 'page' => $page, 'page_size' => $_ITEMS_PER_PAGE);
-if (isset($search) && $search) { $vars['search'] = $search; }
-
-echo $twig->render('products_not_selling_well.html', $vars);
+echo $twig->render('products_never_purchased.html', array('wishlist_items' => $wishlist_items, 'page' => $page, 'page_size' => $_ITEMS_PER_PAGE));
 
 ?>

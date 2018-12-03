@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Products Wished For But Never Purchased{% endblock %}
+
+{% block content %}
+  <p class="description">Displays any customer and product where the customer has wished for the product but has not purchased it.</p>
+  {% if wishlist_items %}
+    <table class="table table-sm table-bordered">
+      <tr class="header">
+        <td>Customer</td>
+        <td>Product</td>
+      </tr>
+      {% for item in wishlist_items %}
+        <tr>
+          <td><a href="{{ root }}/customers/?id={{ item.customer_id }}&seller_id={{ item.customer_seller_id }}">{{ item.first_name }} {{ item.last_name }}</a></td>
+          <td><a href="{{ root }}/products/?id={{ item.product_id }}&seller_id={{ item.product_seller_id }}">{{ item.product_name }} ({{ item.product_code }})</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="no-results">No items found</p>
+  {% endif %}
+  <div class="pagination-buttons">
+    <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>
+    <span>Page {{ page }}</span>
+    <button type="button" id="nextButton" class="btn btn-light btn-sm" {% if wishlist_items|length < page_size %}disabled{% endif %}>Next</button>
+  </div>
+
+  <script>
+    $(document).ready(function($) {
+      $('#previousButton').click(function() {
+        location.href = "{{ root }}/products-never-purchased/?page={{ page - 1}}";
+      });
+      $('#nextButton').click(function() {
+        location.href = "{{ root }}/products-never-purchased/?page={{ page + 1}}";
+      });
+    });
+  </script>
+
+{% endblock %}
