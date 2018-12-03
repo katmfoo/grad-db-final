@@ -15,8 +15,8 @@ if (isset($_GET['search'])) {
 }
 
 $sql = "SELECT * FROM product WHERE is_deleted = 0 ";
-if (isset($search) && $search) { $sql = $sql."AND name LIKE '%".$search."%' "; }
-$sql = $sql."ORDER BY name ASC LIMIT ".$_ITEMS_PER_PAGE." OFFSET ".$offset;
+if (isset($search) && $search) { $sql = $sql."AND name LIKE '%$search%' "; }
+$sql = $sql."ORDER BY name ASC LIMIT $_ITEMS_PER_PAGE OFFSET $offset";
 $result = mysqli_query($conn, $sql);
 $products = array();
 

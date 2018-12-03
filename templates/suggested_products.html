@@ -1,27 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}Products Not Selling Well{% endblock %}
+{% block title %}Suggested Products{% endblock %}
 
 {% block content %}
-  <p class="description">Displays products that are not selling well based off of when they were last purchased.</p>
+  <p class="description">Displays suggested products for the currently logged in customer based off of their wishlist and order history.</p>
   {% if products %}
     <table class="table table-sm table-bordered">
       <tr class="header">
         <td></td>
         <td>Product</td>
-        <td>Last purchase date</td>
+        <td>Category</td>
       </tr>
       {% for product in products %}
         <tr>
           <td>{{ loop.index }}</td>
           <td><a href="{{ root }}/products/?id={{ product.product_id }}&seller_id=1">{{ product.name }} ({{ product.product_code }})</a></td>
-          <td>
-            {% if product.last_purchase_date %}
-              {{ product.last_purchase_date }}
-            {% else %}
-              <span class="text-danger">Never purchased</span>
-            {% endif %}
-          </td>
+          <td>{{ product.category }}</td>
         </tr>
       {% endfor %}
     </table>
@@ -37,10 +31,10 @@
   <script>
     $(document).ready(function($) {
       $('#previousButton').click(function() {
-        location.href = "{{ root }}/products-not-selling-well/?page={{ page - 1}}";
+        location.href = "{{ root }}/suggested-products/?page={{ page - 1}}";
       });
       $('#nextButton').click(function() {
-        location.href = "{{ root }}/products-not-selling-well/?page={{ page + 1}}";
+        location.href = "{{ root }}/suggested-products/?page={{ page + 1}}";
       });
     });
   </script>

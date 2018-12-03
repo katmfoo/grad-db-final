@@ -6,7 +6,7 @@ if (isset($_GET['id'])) {
     $product_id = htmlspecialchars($_GET['id']);
     $seller_id = htmlspecialchars($_GET['seller_id']);
 
-    $sql = "SELECT * FROM product_view WHERE product_id = ".$product_id." AND seller_id = '".$seller_id."'";
+    $sql = "SELECT * FROM product_view WHERE product_id = $product_id AND seller_id = $seller_id";
 
     $result = mysqli_query($conn, $sql);
     $product = mysqli_fetch_assoc($result);
@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
 
     $current_customer_rating = null;
     if (isset($_SESSION['current_customer_id']) && isset($_SESSION['current_customer_seller_id'])) {
-        $sql = "SELECT rating FROM product_rating WHERE customer_id = ".$_SESSION['current_customer_id']." AND customer_seller_id = ".$_SESSION['current_customer_seller_id']." AND product_id = ".$product_id." AND product_seller_id = ".$seller_id;
+        $sql = "SELECT rating FROM product_rating WHERE customer_id = ".$_SESSION['current_customer_id']." AND customer_seller_id = ".$_SESSION['current_customer_seller_id']." AND product_id = $product_id AND product_seller_id = $seller_id";
         $result = mysqli_query($conn, $sql);
         $current_customer_rating = mysqli_fetch_assoc($result)['rating'];
     }
@@ -35,8 +35,8 @@ if (isset($_GET['id'])) {
     }
     
     $sql = "SELECT * FROM product WHERE is_deleted = 0";
-    if (isset($search) && $search) { $sql = $sql." AND name LIKE '%".$search."%'"; }
-    $sql = $sql." ORDER BY name ASC LIMIT ".$_ITEMS_PER_PAGE." OFFSET ".$offset;
+    if (isset($search) && $search) { $sql = $sql." AND name LIKE '%$search%'"; }
+    $sql = $sql." ORDER BY name ASC LIMIT $_ITEMS_PER_PAGE OFFSET $offset";
 
     $result = mysqli_query($conn, $sql);
     $products = array();

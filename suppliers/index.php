@@ -5,12 +5,12 @@ require_once '../global.php';
 if (isset($_GET['id'])) {
     $supplier_id = htmlspecialchars($_GET['id']);
 
-    $sql = "SELECT * FROM supplier JOIN address ON supplier.address_id = address.address_id WHERE supplier_id = ".$supplier_id;
+    $sql = "SELECT * FROM supplier JOIN address ON supplier.address_id = address.address_id WHERE supplier_id = $supplier_id";
 
     $result = mysqli_query($conn, $sql);
     $supplier = mysqli_fetch_assoc($result);
 
-    $sql = "SELECT * FROM product WHERE supplier_id =".$supplier_id." AND is_deleted = 0";
+    $sql = "SELECT * FROM product WHERE supplier_id = $supplier_id AND is_deleted = 0";
 
     $result = mysqli_query($conn, $sql);
     $products = array();
@@ -38,8 +38,8 @@ if (isset($_GET['id'])) {
     }
     
     $sql = "SELECT * FROM supplier WHERE is_deleted = 0 ";
-    if (isset($search) && $search) { $sql = $sql."AND supplier_name LIKE '%".$search."%' "; }
-    $sql = $sql."ORDER BY supplier_name ASC LIMIT ".$_ITEMS_PER_PAGE." OFFSET ".$offset;
+    if (isset($search) && $search) { $sql = $sql."AND supplier_name LIKE '%$search%' "; }
+    $sql = $sql."ORDER BY supplier_name ASC LIMIT $_ITEMS_PER_PAGE OFFSET $offset";
     $result = mysqli_query($conn, $sql);
     $suppliers = array();
     

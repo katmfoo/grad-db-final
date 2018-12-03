@@ -13,23 +13,24 @@ $state = htmlspecialchars($_POST['state']);
 $zip = htmlspecialchars($_POST['zip']);
 $country = htmlspecialchars($_POST['country']);
 
-$sql = "INSERT INTO address (address, city, state, zip, country, type) VALUES ('".$address."', '".$city."', '".$state."', '".$zip."', '".$country."', '3')";
+$sql = "INSERT INTO address (address, city, state, zip, country, type) VALUES ('$address', '$city', '$state', '$zip', '$country', '3')";
 
 if (mysqli_query($conn, $sql)) {
     $address_id = mysqli_insert_id($conn);
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Error: $sql <br>".mysqli_error($conn);
     return;
 }
 
-$sql = "INSERT INTO supplier (supplier_name, first_name, last_name, job_title, phone_number, address_id) VALUES ('".$supplier_name."', '".$first_name."', '".$last_name."', '".$job_title."', '".$phone_number."', '".$address_id."')";
+$sql = "INSERT INTO supplier (supplier_name, first_name, last_name, job_title, phone_number, address_id) VALUES ('$supplier_name', '$first_name', '$last_name', '$job_title', '$phone_number', '$address_id')";
 
 if (mysqli_query($conn, $sql)) {
     $supplier_id = mysqli_insert_id($conn);
     $_SESSION['flash'] = "Supplier created successfully";
-    header('Location: '.$_ROOT.'/suppliers/?id='.$supplier_id);
+    header("Location: $_ROOT/suppliers/?id=$supplier_id");
+    return;
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Error: $sql <br>".mysqli_error($conn);
     return;
 }
 

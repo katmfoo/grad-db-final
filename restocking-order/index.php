@@ -10,7 +10,7 @@ if (isset($_GET['page'])) {
 
 $offset = $_ITEMS_PER_PAGE * ($page - 1);
 
-$sql = "SELECT * FROM product WHERE is_deleted = 0 AND current_stock < minimum_stock ORDER BY minimum_stock - current_stock DESC LIMIT ".$_ITEMS_PER_PAGE." OFFSET ".$offset;
+$sql = "SELECT * FROM product WHERE is_deleted = 0 AND current_stock < minimum_stock ORDER BY minimum_stock - current_stock DESC LIMIT $_ITEMS_PER_PAGE OFFSET $offset";
 $result = mysqli_query($conn, $sql);
 $products = array();
 

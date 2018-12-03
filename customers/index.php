@@ -6,12 +6,12 @@ if (isset($_GET['id'])) {
     $customer_id = htmlspecialchars($_GET['id']);
     $seller_id = htmlspecialchars($_GET['seller_id']);
 
-    $sql = "SELECT * FROM customer_view WHERE customer_id = ".$customer_id." AND seller_id = '".$seller_id."'";
+    $sql = "SELECT * FROM customer_view WHERE customer_id = $customer_id AND seller_id = $seller_id";
 
     $result = mysqli_query($conn, $sql);
     $customer = mysqli_fetch_assoc($result);
 
-    $sql = "SELECT * FROM order_view WHERE customer_id = ".$customer_id." AND customer_seller_id = '".$seller_id."'";
+    $sql = "SELECT * FROM order_view WHERE customer_id = $customer_id AND customer_seller_id = $seller_id";
     $result = mysqli_query($conn, $sql);
     $orders = array();
     
@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
         }
     }
 
-    $sql = "SELECT * FROM wishlist JOIN product_view ON wishlist.product_id = product_view.product_id AND wishlist.product_seller_id = product_view.seller_id WHERE customer_id = ".$customer_id." AND customer_seller_id = ".$seller_id;
+    $sql = "SELECT * FROM wishlist JOIN product_view ON wishlist.product_id = product_view.product_id AND wishlist.product_seller_id = product_view.seller_id WHERE customer_id = $customer_id AND customer_seller_id = $seller_id";
 
     $result = mysqli_query($conn, $sql);
     $wishlist = array();
@@ -47,8 +47,8 @@ if (isset($_GET['id'])) {
     }
     
     $sql = "SELECT * FROM customer_view ";
-    if (isset($search) && $search) { $sql = $sql."WHERE CONCAT(first_name, ' ', last_name) LIKE '%".$search."%'"; }
-    $sql = $sql."ORDER BY first_name ASC, last_name ASC LIMIT ".$_ITEMS_PER_PAGE." OFFSET ".$offset;
+    if (isset($search) && $search) { $sql = $sql."WHERE CONCAT(first_name, ' ', last_name) LIKE '%$search%'"; }
+    $sql = $sql."ORDER BY first_name ASC, last_name ASC LIMIT $_ITEMS_PER_PAGE OFFSET $offset";
     $result = mysqli_query($conn, $sql);
     $customers = array();
     

@@ -22,11 +22,11 @@ $sql = "SELECT * FROM product_view ";
 
 if ((isset($search) && $search) OR (isset($category) && $category)) { $sql = $sql."WHERE"; }
 
-if (isset($search) && $search) { $sql = $sql." name LIKE '%".$search."%'"; }
+if (isset($search) && $search) { $sql = $sql." name LIKE '%$search%'"; }
 if ((isset($search) && $search) && (isset($category) && $category)) { $sql = $sql." AND"; }
-if (isset($category) && $category) { $sql = $sql." category LIKE '%".$category."%'"; }
+if (isset($category) && $category) { $sql = $sql." category LIKE '%$category%'"; }
 
-$sql = $sql." ORDER BY name ASC LIMIT ".$_ITEMS_PER_PAGE." OFFSET ".$offset;
+$sql = $sql." ORDER BY name ASC LIMIT $_ITEMS_PER_PAGE OFFSET $offset";
 
 $result = mysqli_query($conn, $sql);
 $products = array();

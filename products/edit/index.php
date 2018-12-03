@@ -4,7 +4,7 @@ require_once '../../global.php';
 
 $product_id = htmlspecialchars($_GET['id']);
 
-$sql = "SELECT * FROM product WHERE product_id = ".$product_id;
+$sql = "SELECT * FROM product WHERE product_id = $product_id";
 
 $result = mysqli_query($conn, $sql);
 $product = mysqli_fetch_assoc($result);

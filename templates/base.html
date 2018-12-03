@@ -112,6 +112,11 @@
         margin-top: -14px;
         margin-bottom: 22px;
       }
+
+      .description {
+        font-style: italic;
+        color: #909090;
+      }
     </style>
 
     <!-- Optional JavaScript -->
@@ -184,6 +189,16 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="{{ root }}/inventory/">Product inventory</a>
                 <a class="dropdown-item" href="{{ root }}/restocking-order/">Restocking order</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Misc
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                {% if current_customer %}<a class="dropdown-item" href="{{ root }}/suggested-products/">Suggested products</a>{% endif %}
+                <a class="dropdown-item" href="{{ root }}/products-most-wished/">Most wished for products by category</a>
+                <a class="dropdown-item" href="{{ root }}/products-never-purchased/">Products never purchased</a>
               </div>
             </li>
           </div>
