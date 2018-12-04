@@ -35,7 +35,7 @@ CREATE TABLE `address` (
   PRIMARY KEY (`address_id`),
   KEY `fk_address_address_type_idx` (`type`),
   CONSTRAINT `fk_address_address_type` FOREIGN KEY (`type`) REFERENCES `address_type` (`address_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `address` (
 
 LOCK TABLES `address` WRITE;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
-INSERT INTO `address` VALUES (1,'1116 Elk Road','Monroeville','NJ','08343','USA',1,'2018-11-15 13:33:23','2018-11-15 02:21:20'),(2,'1116 Elk Road','Monroeville','NJ','08343','USA',1,'2018-11-15 22:56:28','2018-11-15 03:21:29'),(3,'asdfsadf','sdfsd','fsdaf','sadf','asdsd',1,'2018-11-15 13:33:23','2018-11-15 03:22:45'),(4,'89 South Avenue','Philadelphia','PA','83921','USA',1,'2018-11-15 14:37:16','2018-11-15 14:37:16'),(5,'23 Corn Roads','Millwuks','OHs','23412s','USAs',1,'2018-11-15 15:19:56','2018-11-15 14:49:29'),(6,'38 Jeez Streets','Monroevilles','OHs','12912s','USAs',1,'2018-11-15 23:01:43','2018-11-15 22:23:54'),(7,'','','','','',1,'2018-11-15 22:25:04','2018-11-15 22:25:04'),(8,'','','','','',1,'2018-11-15 22:25:39','2018-11-15 22:25:39'),(9,'123 Main Street','Point Place','Wisconsin','12345','USA',1,'2018-11-15 22:57:47','2018-11-15 22:57:47'),(10,'23 Yamaha Road','Columbia','OH','12345','USA',1,'2018-11-15 23:18:50','2018-11-15 23:18:50'),(11,'12 Fairview Rd','Cleanville','KA','12312','USA',1,'2018-11-15 23:44:29','2018-11-15 23:44:29'),(12,'78 Main Street','Cooca','OH','22412','USA',1,'2018-11-16 18:04:33','2018-11-16 18:04:33'),(13,'sadf','dsf','sdaf','sdf','sfd',1,'2018-11-18 06:42:12','2018-11-18 06:42:12'),(14,'45 East Street','Monroe','CO','12345','USA',2,'2018-11-19 14:08:01','2018-11-19 14:08:01'),(17,'46 East Street','Monroe','CO','12345','USA',2,'2018-11-19 14:26:15','2018-11-19 14:26:15'),(18,'h','h','h','h','h',1,'2018-11-19 14:53:25','2018-11-19 14:53:25'),(20,'4116 Stanbridge Ct.','Downey','Californias','90241','US',2,'2018-11-19 15:06:29','2018-11-19 15:06:29'),(21,'6540 Park Glen Ct.','Kirkland','Washington','98033','US',2,'2018-11-19 16:34:27','2018-11-19 16:34:27'),(22,'6695 Black Walnut Court','Sooke','British Columbia','V0','CA',2,'2018-11-19 16:40:52','2018-11-19 16:40:52'),(23,'1116 Elk Road','Monroeville','NJ','08343','USA',2,'2018-11-19 16:44:01','2018-11-19 16:44:01'),(24,'sdaf','asdf','sdaf','sdafsad','sdaf',1,'2018-11-19 23:20:09','2018-11-19 23:20:09'),(25,'9761 Darnett Circle','Lebanon','Oregon','97355','US',2,'2018-11-19 23:29:31','2018-11-19 23:29:31'),(26,'asdf','asdf','sadf','sadf','asdf',3,'2018-11-20 23:29:16','2018-11-20 23:29:16'),(27,'123 Main Street','Point Place','Wisconsin','12345','USA',2,'2018-12-03 02:31:17','2018-12-03 02:31:17');
+INSERT INTO `address` VALUES (1,'1116 Elk Road','Monroeville','NJ','08343','USA',1,'2018-11-15 13:33:23','2018-11-15 02:21:20'),(2,'1116 Elk Road','Monroeville','NJ','08343','USA',1,'2018-11-15 22:56:28','2018-11-15 03:21:29'),(3,'asdfsadf','sdfsd','fsdaf','sadf','asdsd',1,'2018-11-15 13:33:23','2018-11-15 03:22:45'),(4,'89 South Avenue','Philadelphia','PA','83921','USA',1,'2018-11-15 14:37:16','2018-11-15 14:37:16'),(5,'23 Corn Roads','Millwuks','OHs','23412s','USAs',1,'2018-11-15 15:19:56','2018-11-15 14:49:29'),(6,'38 Jeez Streets','Monroevilles','OHs','12912s','USAs',1,'2018-11-15 23:01:43','2018-11-15 22:23:54'),(7,'','','','','',1,'2018-11-15 22:25:04','2018-11-15 22:25:04'),(8,'','','','','',1,'2018-11-15 22:25:39','2018-11-15 22:25:39'),(9,'123 Main Street','Point Place','Wisconsin','12345','USA',1,'2018-11-15 22:57:47','2018-11-15 22:57:47'),(10,'23 Yamaha Road','Columbia','OH','12345','USA',1,'2018-11-15 23:18:50','2018-11-15 23:18:50'),(11,'12 Fairview Rd','Cleanville','KA','12312','USA',1,'2018-11-15 23:44:29','2018-11-15 23:44:29'),(12,'78 Main Street','Cooca','OH','22412','USA',1,'2018-11-16 18:04:33','2018-11-16 18:04:33'),(13,'sadf','dsf','sdaf','sdf','sfd',1,'2018-11-18 06:42:12','2018-11-18 06:42:12'),(14,'45 East Street','Monroe','CO','12345','USA',2,'2018-11-19 14:08:01','2018-11-19 14:08:01'),(17,'46 East Street','Monroe','CO','12345','USA',2,'2018-11-19 14:26:15','2018-11-19 14:26:15'),(18,'h','h','h','h','h',1,'2018-11-19 14:53:25','2018-11-19 14:53:25'),(20,'4116 Stanbridge Ct.','Downey','Californias','90241','US',2,'2018-11-19 15:06:29','2018-11-19 15:06:29'),(21,'6540 Park Glen Ct.','Kirkland','Washington','98033','US',2,'2018-11-19 16:34:27','2018-11-19 16:34:27'),(22,'6695 Black Walnut Court','Sooke','British Columbia','V0','CA',2,'2018-11-19 16:40:52','2018-11-19 16:40:52'),(23,'1116 Elk Road','Monroeville','NJ','08343','USA',2,'2018-11-19 16:44:01','2018-11-19 16:44:01'),(24,'sdaf','asdf','sdaf','sdafsad','sdaf',1,'2018-11-19 23:20:09','2018-11-19 23:20:09'),(25,'9761 Darnett Circle','Lebanon','Oregon','97355','US',2,'2018-11-19 23:29:31','2018-11-19 23:29:31'),(26,'asdf','asdf','sadf','sadf','asdf',3,'2018-11-20 23:29:16','2018-11-20 23:29:16'),(27,'123 Main Street','Point Place','Wisconsin','12345','USA',2,'2018-12-03 02:31:17','2018-12-03 02:31:17'),(28,'d','d','d','d','d',1,'2018-12-03 18:10:49','2018-12-03 18:10:49'),(29,'ef','ef','fe','fe','ef',1,'2018-12-03 18:50:44','2018-12-03 18:50:44'),(30,'4116 Stanbridge Ct.','Downey','California','90241','US',2,'2018-12-03 18:52:31','2018-12-03 18:52:31');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +163,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   KEY `fk_customer_address_idx` (`address_id`),
   CONSTRAINT `fk_customer_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,7 +172,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (21,'Patrick','Richeal',2,0,'2018-11-20 01:30:27','2018-11-15 03:21:29'),(26,'Steven','Bob',9,0,'2018-11-26 00:37:58','2018-11-15 22:57:47');
+INSERT INTO `customer` VALUES (21,'Patrick','Richeal',2,0,'2018-11-20 01:30:27','2018-11-15 03:21:29'),(26,'Steven','Bob',9,0,'2018-11-26 00:37:58','2018-11-15 22:57:47'),(27,'Bob','Stevens',28,1,'2018-12-03 18:52:55','2018-12-03 18:10:49'),(28,'Cheese','Burden',29,0,'2018-12-03 18:50:44','2018-12-03 18:50:44');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +218,7 @@ CREATE TABLE `order` (
   KEY `fk_order_address_idx` (`shipping_address_id`),
   CONSTRAINT `fk_order_address` FOREIGN KEY (`shipping_address_id`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_seller_id` FOREIGN KEY (`customer_seller_id`) REFERENCES `seller` (`seller_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +227,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (7,'CF54AEA2DE',21,1,23,'2018-11-26 00:39:03','2018-11-19 16:50:35'),(8,'F20C61EA1B',21,1,23,'2018-11-26 00:39:03','2018-11-19 16:52:04'),(9,'FD418165D2',21,1,23,'2018-11-26 00:39:03','2018-11-19 17:30:32'),(10,'2215A7087C',21,1,23,'2018-11-26 00:39:03','2018-11-19 17:34:20'),(11,'0015308D6F',21414,2,25,'2018-11-19 23:29:31','2018-11-19 23:29:31'),(16,'8E7D76E19D',21414,2,25,'2018-11-20 00:16:47','2018-11-20 00:16:47'),(18,'97B82825C6',21414,2,25,'2018-11-20 00:20:00','2018-11-20 00:20:00'),(20,'9921AA9DD8',21414,2,25,'2018-11-20 00:23:36','2018-11-20 00:23:36'),(21,'0929DECCB9',21414,2,25,'2018-11-20 00:51:18','2018-11-20 00:51:18'),(22,'748A9E6A83',21,1,23,'2018-11-26 00:39:03','2018-11-20 01:43:44'),(23,'3B99B6B214',26,1,27,'2018-12-03 02:31:17','2018-12-03 02:31:17');
+INSERT INTO `order` VALUES (7,'CF54AEA2DE',21,1,23,'2018-11-26 00:39:03','2018-11-19 16:50:35'),(8,'F20C61EA1B',21,1,23,'2018-11-26 00:39:03','2018-11-19 16:52:04'),(9,'FD418165D2',21,1,23,'2018-11-26 00:39:03','2018-11-19 17:30:32'),(10,'2215A7087C',21,1,23,'2018-11-26 00:39:03','2018-11-19 17:34:20'),(11,'0015308D6F',21414,2,25,'2018-11-19 23:29:31','2018-11-19 23:29:31'),(16,'8E7D76E19D',21414,2,25,'2018-11-20 00:16:47','2018-11-20 00:16:47'),(18,'97B82825C6',21414,2,25,'2018-11-20 00:20:00','2018-11-20 00:20:00'),(20,'9921AA9DD8',21414,2,25,'2018-11-20 00:23:36','2018-11-20 00:23:36'),(21,'0929DECCB9',21414,2,25,'2018-11-20 00:51:18','2018-11-20 00:51:18'),(22,'748A9E6A83',21,1,23,'2018-11-26 00:39:03','2018-11-20 01:43:44'),(23,'3B99B6B214',26,1,27,'2018-12-03 02:31:17','2018-12-03 02:31:17'),(24,'7C4D3B762D',28866,2,30,'2018-12-03 18:52:31','2018-12-03 18:52:31'),(25,'1CEC26C810',26,1,27,'2018-12-03 19:08:17','2018-12-03 19:08:17');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,7 +259,7 @@ CREATE TABLE `order_product` (
 
 LOCK TABLES `order_product` WRITE;
 /*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
-INSERT INTO `order_product` VALUES (7,5,4,2,5.98,'2018-11-19 16:50:35','2018-11-19 16:50:35'),(8,5,4,3,5.98,'2018-12-01 16:05:47','2018-12-01 16:05:47'),(9,6,4,3,8.97,'2018-11-19 17:30:32','2018-11-19 17:30:32'),(10,952,2,2,40.48,'2018-11-19 17:34:20','2018-11-19 17:34:20'),(11,1,1,2,139.78,'2018-11-24 18:05:15','2018-11-19 23:29:31'),(11,6,4,6,17.94,'2018-11-19 23:29:31','2018-11-19 23:29:31'),(16,1,1,12,1677.36,'2018-11-24 18:05:15','2018-11-20 00:16:47'),(18,1,1,7,978.46,'2018-11-24 18:05:15','2018-11-20 00:20:00'),(20,1,1,7,978.46,'2018-11-24 18:05:15','2018-11-20 00:23:36'),(21,1,1,4,559.12,'2018-11-24 18:05:15','2018-11-20 00:51:18'),(22,1,4,2,1.98,'2018-11-20 01:43:44','2018-11-20 01:43:44'),(23,3,1,1,10.00,'2018-12-03 02:31:17','2018-12-03 02:31:17');
+INSERT INTO `order_product` VALUES (7,5,4,2,5.98,'2018-11-19 16:50:35','2018-11-19 16:50:35'),(8,5,4,3,5.98,'2018-12-01 16:05:47','2018-12-01 16:05:47'),(9,6,4,3,8.97,'2018-11-19 17:30:32','2018-11-19 17:30:32'),(10,952,2,2,40.48,'2018-11-19 17:34:20','2018-11-19 17:34:20'),(11,1,1,2,139.78,'2018-11-24 18:05:15','2018-11-19 23:29:31'),(11,6,4,6,17.94,'2018-11-19 23:29:31','2018-11-19 23:29:31'),(16,1,1,12,1677.36,'2018-11-24 18:05:15','2018-11-20 00:16:47'),(18,1,1,7,978.46,'2018-11-24 18:05:15','2018-11-20 00:20:00'),(20,1,1,7,978.46,'2018-11-24 18:05:15','2018-11-20 00:23:36'),(21,1,1,4,559.12,'2018-11-24 18:05:15','2018-11-20 00:51:18'),(22,1,4,2,1.98,'2018-11-20 01:43:44','2018-11-20 01:43:44'),(23,3,1,1,10.00,'2018-12-03 02:31:17','2018-12-03 02:31:17'),(24,3,1,1,10.00,'2018-12-03 18:52:31','2018-12-03 18:52:31'),(25,879,2,1,159.00,'2018-12-03 19:08:17','2018-12-03 19:08:17');
 /*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,7 +314,7 @@ CREATE TABLE `product` (
   KEY `fk_product_category_idx` (`category_id`),
   CONSTRAINT `fk_product_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_product_supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -323,7 +323,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'D3A4E7361C','Laptop',139.78,2,10,8,1,0,'2018-11-20 23:29:47','2018-11-19 23:24:58'),(2,'2A1DDAA6E7','Cornflakes',1.34,1,20,17,1,0,'2018-11-20 23:42:30','2018-11-20 23:41:59'),(3,'55F3A64E22','Apples',10.00,2,10,29,NULL,0,'2018-12-03 02:31:17','2018-11-24 17:55:13'),(4,'76E139B388','Orange',3.00,2,3,13,NULL,0,'2018-11-24 18:30:25','2018-11-24 18:30:25');
+INSERT INTO `product` VALUES (1,'D3A4E7361C','Laptop',139.78,2,10,8,1,0,'2018-11-20 23:29:47','2018-11-19 23:24:58'),(2,'2A1DDAA6E7','Cornflakes',1.34,1,20,17,1,0,'2018-11-20 23:42:30','2018-11-20 23:41:59'),(3,'55F3A64E22','Apples',10.00,2,10,28,1,0,'2018-12-03 18:52:31','2018-11-24 17:55:13'),(4,'76E139B388','Orange',3.00,2,3,13,1,0,'2018-12-03 19:52:59','2018-11-24 18:30:25'),(5,'7866B0D11B','Banana',23.00,2,10,200,1,0,'2018-12-03 17:26:05','2018-12-03 17:26:05');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -376,10 +376,11 @@ SET character_set_client = utf8;
  1 AS `quantity_available`,
  1 AS `seller_id`,
  1 AS `seller`,
- 1 AS `categories`,
+ 1 AS `category`,
  1 AS `rating`,
  1 AS `rating_weighted`,
- 1 AS `num_ratings`*/;
+ 1 AS `num_ratings`,
+ 1 AS `times_wished_for`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -470,7 +471,7 @@ CREATE TABLE `wishlist` (
 
 LOCK TABLES `wishlist` WRITE;
 /*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
-INSERT INTO `wishlist` VALUES (26,1,3,1,'2018-11-26 01:57:40','2018-11-26 01:57:40'),(26,1,879,2,'2018-11-30 18:02:42','2018-11-30 18:02:42');
+INSERT INTO `wishlist` VALUES (26,1,1,1,'2018-12-03 15:56:10','2018-12-03 15:56:10'),(26,1,2,1,'2018-12-03 19:53:16','2018-12-03 19:53:16'),(26,1,3,1,'2018-11-26 01:57:40','2018-11-26 01:57:40'),(26,1,4,1,'2018-12-03 19:53:02','2018-12-03 19:53:02'),(26,1,879,2,'2018-11-30 18:02:42','2018-11-30 18:02:42'),(28187,2,1,1,'2018-12-03 20:04:04','2018-12-03 20:04:04');
 /*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -487,7 +488,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `category_view` AS select `richealp7`.`category`.`name` AS `name` from `richealp7`.`category` union select 'Food' AS `name` union select 'Movies' AS `name` union select distinct `northwind`.`products`.`category` AS `name` from `northwind`.`products` union select `adventureworks`.`productcategory`.`Name` AS `name` from `adventureworks`.`productcategory` union select `adventureworks`.`productsubcategory`.`Name` AS `name` from `adventureworks`.`productsubcategory` */;
+/*!50001 VIEW `category_view` AS select `richealp7`.`category`.`name` AS `name` from `richealp7`.`category` union select 'Movies' AS `name` union select distinct `northwind`.`products`.`category` AS `name` from `northwind`.`products` union select `adventureworks`.`productsubcategory`.`Name` AS `name` from `adventureworks`.`productsubcategory` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -541,7 +542,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `product_view` AS select `richealp7`.`product`.`product_id` AS `product_id`,`richealp7`.`product`.`product_code` AS `product_code`,`richealp7`.`product`.`name` AS `name`,`richealp7`.`product`.`list_price` AS `cost`,`richealp7`.`product`.`current_stock` AS `quantity_available`,1 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 1)) AS `seller`,concat('"',`richealp7`.`category`.`name`,'"') AS `categories`,`GET_PRODUCT_RATING`(`richealp7`.`product`.`product_id`,1) AS `rating`,`GET_PRODUCT_RATING_WEIGHTED`(`richealp7`.`product`.`product_id`,1) AS `rating_weighted`,`GET_PRODUCT_NUM_RATINGS`(`richealp7`.`product`.`product_id`,1) AS `num_ratings` from (`richealp7`.`product` left join `richealp7`.`category` on((`richealp7`.`product`.`category_id` = `richealp7`.`category`.`category_id`))) where (`richealp7`.`product`.`is_deleted` = 0) union select `adventureworks`.`product`.`ProductID` AS `product_id`,`adventureworks`.`product`.`ProductNumber` AS `product_code`,`adventureworks`.`product`.`Name` AS `name`,`adventureworks`.`product`.`ListPrice` AS `cost`,(select coalesce(sum(`adventureworks`.`productinventory`.`Quantity`),0) from `adventureworks`.`productinventory` where (`adventureworks`.`productinventory`.`ProductID` = `adventureworks`.`product`.`ProductID`)) AS `quantity_available`,2 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 2)) AS `seller`,concat('"',`adventureworks`.`productcategory`.`Name`,'", "',`adventureworks`.`productsubcategory`.`Name`,'"') AS `categories`,`GET_PRODUCT_RATING`(`adventureworks`.`product`.`ProductID`,2) AS `rating`,`GET_PRODUCT_RATING_WEIGHTED`(`adventureworks`.`product`.`ProductID`,2) AS `rating_weighted`,`GET_PRODUCT_NUM_RATINGS`(`adventureworks`.`product`.`ProductID`,2) AS `num_ratings` from ((`adventureworks`.`product` left join `adventureworks`.`productsubcategory` on((`adventureworks`.`product`.`ProductSubcategoryID` = `adventureworks`.`productsubcategory`.`ProductSubcategoryID`))) left join `adventureworks`.`productcategory` on((`adventureworks`.`productsubcategory`.`ProductCategoryID` = `adventureworks`.`productcategory`.`ProductCategoryID`))) where ((`adventureworks`.`product`.`SellStartDate` <= now()) and (`adventureworks`.`product`.`ListPrice` <> 0) and (isnull(`adventureworks`.`product`.`SellEndDate`) or (`adventureworks`.`product`.`SellEndDate` >= now())) and (isnull(`adventureworks`.`product`.`DiscontinuedDate`) or ((`adventureworks`.`product`.`DiscontinuedDate` is not null) and (`adventureworks`.`product`.`DiscontinuedDate` >= now())))) union select `northwind`.`products`.`id` AS `product_id`,`northwind`.`products`.`product_code` AS `product_code`,`northwind`.`products`.`product_name` AS `name`,`northwind`.`products`.`list_price` AS `cost`,(select coalesce(sum((`northwind`.`inventory_transactions`.`quantity` * if((`northwind`.`inventory_transactions`.`transaction_type` = 1),1,-(1)))),0) from `northwind`.`inventory_transactions` where (`northwind`.`inventory_transactions`.`product_id` = `northwind`.`products`.`id`)) AS `quantity_available`,3 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 3)) AS `seller`,concat('"Food", "',`northwind`.`products`.`category`,'"') AS `categories`,`GET_PRODUCT_RATING`(`northwind`.`products`.`id`,3) AS `rating`,`GET_PRODUCT_RATING_WEIGHTED`(`northwind`.`products`.`id`,3) AS `rating_weighted`,`GET_PRODUCT_NUM_RATINGS`(`northwind`.`products`.`id`,3) AS `num_ratings` from `northwind`.`products` where (`northwind`.`products`.`discontinued` = 0) union select `sakila`.`film`.`film_id` AS `product_id`,NULL AS `product_code`,`sakila`.`film`.`title` AS `name`,`sakila`.`film`.`rental_rate` AS `cost`,(select count(0) from `sakila`.`inventory` where (`sakila`.`inventory`.`film_id` = `sakila`.`film`.`film_id`)) AS `quantity_available`,4 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 4)) AS `seller`,'"Movies"' AS `categories`,`GET_PRODUCT_RATING`(`sakila`.`film`.`film_id`,4) AS `rating`,`GET_PRODUCT_RATING_WEIGHTED`(`sakila`.`film`.`film_id`,4) AS `rating_weighted`,`GET_PRODUCT_NUM_RATINGS`(`sakila`.`film`.`film_id`,4) AS `num_ratings` from `sakila`.`film` */;
+/*!50001 VIEW `product_view` AS select `richealp7`.`product`.`product_id` AS `product_id`,`richealp7`.`product`.`product_code` AS `product_code`,`richealp7`.`product`.`name` AS `name`,`richealp7`.`product`.`list_price` AS `cost`,`richealp7`.`product`.`current_stock` AS `quantity_available`,1 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 1)) AS `seller`,`richealp7`.`category`.`name` AS `category`,`GET_PRODUCT_RATING`(`richealp7`.`product`.`product_id`,1) AS `rating`,`GET_PRODUCT_RATING_WEIGHTED`(`richealp7`.`product`.`product_id`,1) AS `rating_weighted`,`GET_PRODUCT_NUM_RATINGS`(`richealp7`.`product`.`product_id`,1) AS `num_ratings`,`get_product_num_wished`(`richealp7`.`product`.`product_id`,1) AS `times_wished_for` from (`richealp7`.`product` left join `richealp7`.`category` on((`richealp7`.`product`.`category_id` = `richealp7`.`category`.`category_id`))) where (`richealp7`.`product`.`is_deleted` = 0) union select `adventureworks`.`product`.`ProductID` AS `product_id`,`adventureworks`.`product`.`ProductNumber` AS `product_code`,`adventureworks`.`product`.`Name` AS `name`,`adventureworks`.`product`.`ListPrice` AS `cost`,(select coalesce(sum(`adventureworks`.`productinventory`.`Quantity`),0) from `adventureworks`.`productinventory` where (`adventureworks`.`productinventory`.`ProductID` = `adventureworks`.`product`.`ProductID`)) AS `quantity_available`,2 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 2)) AS `seller`,`adventureworks`.`productsubcategory`.`Name` AS `category`,`GET_PRODUCT_RATING`(`adventureworks`.`product`.`ProductID`,2) AS `rating`,`GET_PRODUCT_RATING_WEIGHTED`(`adventureworks`.`product`.`ProductID`,2) AS `rating_weighted`,`GET_PRODUCT_NUM_RATINGS`(`adventureworks`.`product`.`ProductID`,2) AS `num_ratings`,`get_product_num_wished`(`adventureworks`.`product`.`ProductID`,2) AS `times_wished_for` from ((`adventureworks`.`product` left join `adventureworks`.`productsubcategory` on((`adventureworks`.`product`.`ProductSubcategoryID` = `adventureworks`.`productsubcategory`.`ProductSubcategoryID`))) left join `adventureworks`.`productcategory` on((`adventureworks`.`productsubcategory`.`ProductCategoryID` = `adventureworks`.`productcategory`.`ProductCategoryID`))) where ((`adventureworks`.`product`.`SellStartDate` <= now()) and (`adventureworks`.`product`.`ListPrice` <> 0) and (isnull(`adventureworks`.`product`.`SellEndDate`) or (`adventureworks`.`product`.`SellEndDate` >= now())) and (isnull(`adventureworks`.`product`.`DiscontinuedDate`) or ((`adventureworks`.`product`.`DiscontinuedDate` is not null) and (`adventureworks`.`product`.`DiscontinuedDate` >= now())))) union select `northwind`.`products`.`id` AS `product_id`,`northwind`.`products`.`product_code` AS `product_code`,`northwind`.`products`.`product_name` AS `name`,`northwind`.`products`.`list_price` AS `cost`,(select coalesce(sum((`northwind`.`inventory_transactions`.`quantity` * if((`northwind`.`inventory_transactions`.`transaction_type` = 1),1,-(1)))),0) from `northwind`.`inventory_transactions` where (`northwind`.`inventory_transactions`.`product_id` = `northwind`.`products`.`id`)) AS `quantity_available`,3 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 3)) AS `seller`,`northwind`.`products`.`category` AS `category`,`GET_PRODUCT_RATING`(`northwind`.`products`.`id`,3) AS `rating`,`GET_PRODUCT_RATING_WEIGHTED`(`northwind`.`products`.`id`,3) AS `rating_weighted`,`GET_PRODUCT_NUM_RATINGS`(`northwind`.`products`.`id`,3) AS `num_ratings`,`get_product_num_wished`(`northwind`.`products`.`id`,3) AS `times_wished_for` from `northwind`.`products` where (`northwind`.`products`.`discontinued` = 0) union select `sakila`.`film`.`film_id` AS `product_id`,NULL AS `product_code`,`sakila`.`film`.`title` AS `name`,`sakila`.`film`.`rental_rate` AS `cost`,(select count(0) from `sakila`.`inventory` where (`sakila`.`inventory`.`film_id` = `sakila`.`film`.`film_id`)) AS `quantity_available`,4 AS `seller_id`,(select `richealp7`.`seller`.`name` from `richealp7`.`seller` where (`richealp7`.`seller`.`seller_id` = 4)) AS `seller`,'Movies' AS `category`,`GET_PRODUCT_RATING`(`sakila`.`film`.`film_id`,4) AS `rating`,`GET_PRODUCT_RATING_WEIGHTED`(`sakila`.`film`.`film_id`,4) AS `rating_weighted`,`GET_PRODUCT_NUM_RATINGS`(`sakila`.`film`.`film_id`,4) AS `num_ratings`,`get_product_num_wished`(`sakila`.`film`.`film_id`,4) AS `times_wished_for` from `sakila`.`film` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -555,4 +556,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-02 21:46:41
+-- Dump completed on 2018-12-03 21:34:51
