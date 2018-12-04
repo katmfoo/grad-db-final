@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Products Most Wished For by Category{% endblock %}
+
+{% block content %}
+  <p class="description">Displays the top three most wished for products in each category.</p>
+
+  {% if categories %}
+    {% for category in categories %}
+      <h5>{{ category.category }}</h5>
+      <div class="card-columns">
+        {% for product in category.products %}
+          <div class="card clickable">
+            <a class="hidden" href="{{ root }}/products/?id={{ product.product_id }}&seller_id={{ product.seller_id }}"></a>
+            <div class="card-header">{{ loop.index }}. {{ product.name }}</div>
+            <div class="card-body">
+              <div style="margin-top: -7px;" class="clearfix">
+                <small class="text-muted">Sold by {{ product.seller }}</small>
+                {% if product.product_code %}<small style="float: right; margin-top: 4px;" class="text-muted">{{ product.product_code }}</small>{% endif %}
+              </div>
+              <div>
+                {% if product.seller_id == 4 %}Rental rate{% else %}List price{% endif %}: ${{ product.cost|number_format(2) }}
+                {% if product.quantity_available > 0 %}
+                  <small class="text-success">({{ product.quantity_available }} left)</small>
+                {% else %}
+                  <small class="text-danger">(Out of stock)</small>
+                {% endif %}
+              </div>
+              {% if product.category %}
+                <span class="badge badge-pill badge-{{ product.category_color }}">{{ product.category }}</span>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="no-results">No items found</p>
+  {% endif %}
+  
+  <div class="pagination-buttons">
+    <button type="button" id="previousButton" class="btn btn-light btn-sm" {% if page == 1 %}disabled{% endif %}>Previous</button>
+    <span>Page {{ page }}</span>
+    <button type="button" id="nextButton" class="btn btn-light btn-sm" {% if wishlist_items|length < page_size %}disabled{% endif %}>Next</button>
+  </div>
+
+  <script>
+    $(document).ready(function($) {
+      $('#previousButton').click(function() {
+        location.href = "{{ root }}/products-never-purchased/?page={{ page - 1}}";
+      });
+      $('#nextButton').click(function() {
+        location.href = "{{ root }}/products-never-purchased/?page={{ page + 1}}";
+      });
+      $(".card").click(function() {
+        location.href = $(this).find("a").attr("href");
+      });
+    });
+  </script>
+
+{% endblock %}
