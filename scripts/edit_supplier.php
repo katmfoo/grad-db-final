@@ -14,14 +14,7 @@ $state = htmlspecialchars($_POST['state']);
 $zip = htmlspecialchars($_POST['zip']);
 $country = htmlspecialchars($_POST['country']);
 
-$address_id_subquery_sql = "SELECT address_id FROM supplier WHERE supplier_id = $supplier_id";
-$sql = "UPDATE address SET address = '$address', city = '$city', state = '$state', zip = '$zip', country = '$country' WHERE address_id = ($address_id_subquery_sql)";
-
-if (!mysqli_query($conn, $sql)) {
-    echo "Error: $sql <br>".mysqli_error($conn);
-    return;
-}
-$sql = "UPDATE supplier SET supplier_name = '$supplier_name', first_name = '$first_name', last_name = '$last_name', job_title = '$job_title', phone_number = '$phone_number' WHERE supplier_id = $supplier_id";
+$sql = "CALL edit_supplier('$supplier_id', '$supplier_name', '$first_name', '$last_name', '$job_title', '$phone_number', '$address', '$city', '$state', '$zip', '$country')";
 
 if (mysqli_query($conn, $sql)) {
     $_SESSION['flash'] = "Supplier edited successfully";

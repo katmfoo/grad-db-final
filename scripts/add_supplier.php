@@ -13,19 +13,11 @@ $state = htmlspecialchars($_POST['state']);
 $zip = htmlspecialchars($_POST['zip']);
 $country = htmlspecialchars($_POST['country']);
 
-$sql = "INSERT INTO address (address, city, state, zip, country, type) VALUES ('$address', '$city', '$state', '$zip', '$country', '3')";
+$sql = "SELECT create_supplier('$supplier_name', '$first_name', '$last_name', '$job_title', '$phone_number', '$address', '$city', '$state', '$zip', '$country') as supplier_id";
+$result = mysqli_query($conn, $sql);
 
-if (mysqli_query($conn, $sql)) {
-    $address_id = mysqli_insert_id($conn);
-} else {
-    echo "Error: $sql <br>".mysqli_error($conn);
-    return;
-}
-
-$sql = "INSERT INTO supplier (supplier_name, first_name, last_name, job_title, phone_number, address_id) VALUES ('$supplier_name', '$first_name', '$last_name', '$job_title', '$phone_number', '$address_id')";
-
-if (mysqli_query($conn, $sql)) {
-    $supplier_id = mysqli_insert_id($conn);
+if ($result) {
+    $supplier_id = mysqli_fetch_assoc($result)['supplier_id'];
     $_SESSION['flash'] = "Supplier created successfully";
     header("Location: $_ROOT/suppliers/?id=$supplier_id");
     return;

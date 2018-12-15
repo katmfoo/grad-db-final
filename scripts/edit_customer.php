@@ -11,14 +11,7 @@ $state = htmlspecialchars($_POST['state']);
 $zip = htmlspecialchars($_POST['zip']);
 $country = htmlspecialchars($_POST['country']);
 
-$address_id_subquery_sql = "SELECT address_id FROM customer WHERE customer_id = $customer_id";
-$sql = "UPDATE address SET address = '$address', city = '$city', state = '$state', zip = '$zip', country = '$country' WHERE address_id = ($address_id_subquery_sql)";
-
-if (!mysqli_query($conn, $sql)) {
-    echo "Error: $sql <br>".mysqli_error($conn);
-    return;
-}
-$sql = "UPDATE customer SET first_name = '$first_name', last_name = '$last_name' WHERE customer_id = $customer_id";
+$sql = "CALL edit_customer('$customer_id', '$first_name', '$last_name', '$address', '$city', '$state', '$zip', '$country')";
 
 if (mysqli_query($conn, $sql)) {
     $_SESSION['flash'] = "Customer edited successfully";
