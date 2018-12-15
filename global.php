@@ -3,7 +3,7 @@
 require_once 'vendor/autoload.php';
 require_once 'db.php';
 
-$_ROOT = '/~richealp7/grad-db-final';
+$_ROOT = 'http://elvis.rowan.edu/~richealp7/grad-db-final';
 $_ITEMS_PER_PAGE = 12;
 $_CATEGORY_COLORS = array('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark');
 
