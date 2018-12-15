@@ -20,7 +20,22 @@ if (isset($_GET['id'])) {
         $current_customer_rating = mysqli_fetch_assoc($result)['rating'];
     }
 
-    echo $twig->render('product.html', array('product' => $product, 'current_customer_rating' => $current_customer_rating));
+    if ($seller_id == 3) {
+        $sql = "SELECT * FROM northwind.products WHERE id = $product_id";
+        $result = mysqli_query($conn, $sql);
+        $northwind_product = mysqli_fetch_assoc($result);
+    } else if ($seller_id == 4) {
+        $sql = "SELECT * FROM sakila.film WHERE film_id = $product_id";
+        $result = mysqli_query($conn, $sql);
+        $sakila_product = mysqli_fetch_assoc($result);
+    }
+
+    $vars = array('product' => $product, 'current_customer_rating' => $current_customer_rating);
+
+    if (isset($northwind_product)) { $vars['northwind_product'] = $northwind_product; }
+    if (isset($sakila_product)) { $vars['sakila_product'] = $sakila_product; }
+
+    echo $twig->render('product.html', $vars);
 } else {
     if (isset($_GET['page'])) {
         $page = htmlspecialchars($_GET['page']);

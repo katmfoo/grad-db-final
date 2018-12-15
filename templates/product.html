@@ -48,6 +48,30 @@
           <span class="text-danger">Out of stock</span>
         {% endif %}</td>
     </tr>
+    {% if northwind_product %}
+    <tr>
+      <td class="header">Quantity per unit</td>
+      <td>{{ northwind_product.quantity_per_unit }}</td>
+    </tr>
+    {% endif %}
+    {% if sakila_product %}
+    <tr>
+      <td class="header">Description</td>
+      <td>{{ sakila_product.description }}</td>
+    </tr>
+    <tr>
+      <td class="header">Release year</td>
+      <td>{{ sakila_product.release_year }}</td>
+    </tr>
+    <tr>
+      <td class="header">Length</td>
+      <td>{{ sakila_product.length }} minutes</td>
+    </tr>
+    <tr>
+      <td class="header">Film rating</td>
+      <td>{{ sakila_product.rating }}</td>
+    </tr>
+    {% endif %}
     {% if product.category %}
       <tr>
         <td class="header">Category</td>
