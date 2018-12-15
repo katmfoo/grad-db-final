@@ -10,7 +10,7 @@ $list_price = htmlspecialchars($_POST['list_price']);
 $minimum_stock = htmlspecialchars($_POST['minimum_stock']);
 $current_stock = htmlspecialchars($_POST['current_stock']);
 
-$sql = "UPDATE product SET name = '$name', list_price = '$list_price', category_id = '$category_id', supplier_id = '$supplier_id', minimum_stock = '$minimum_stock', current_stock = '$current_stock' WHERE product_id = $product_id";
+$sql = "UPDATE product SET name = '$name', list_price = '$list_price', category_id = $category_id, supplier_id = '$supplier_id', minimum_stock = '$minimum_stock', current_stock = '$current_stock' WHERE product_id = $product_id";
 
 if (mysqli_query($conn, $sql)) {
     $_SESSION['flash'] = "Product edited successfully";
